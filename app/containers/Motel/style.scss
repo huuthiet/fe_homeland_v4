@@ -1,0 +1,44 @@
+.motel-wrapper {
+    .image-slider {
+        margin-bottom: 20px;
+        .carousel-item {
+            height: 200px;
+            position: relative;
+            img {
+                width: auto;
+                height: auto;
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                margin: auto;
+            }
+        }
+    }
+    .content {
+        margin-bottom: 20px;
+        .bold {
+            font-weight: 500;
+        }
+        .edit-button,
+        .add-button {
+            img {
+                height: 30px;
+            }
+            cursor: pointer;
+        }
+        .detail {
+            display: inline;
+            &:first-child {
+                margin-right: 50px;
+            }
+        }
+        .price {
+            .red-price {
+                font-weight: 500;
+                color: red;
+            }
+        }
+    }
+}

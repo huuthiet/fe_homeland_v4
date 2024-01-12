@@ -1,0 +1,44 @@
+.marker-price-wrapper {
+  font-size: 14px;
+  font-weight: '500';
+  color: '#FFFFFF';
+  white-space: 'nowrap';
+  text-align: center;
+  .marker-price {
+    padding: 5px 10px;
+    color: white;
+    border-radius: 2px;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+  }
+  &::after {
+    content: '\f0d7';
+    font-size: 25px;
+    font-family: FontAwesome;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 18px;
+    filter: drop-shadow(0 1px 0 rgba(0, 0, 0, 0.2));
+  }
+  // &::before,
+  // &::after {
+  //   content: '';
+  //   display: block;
+  //   position: absolute;
+  //   left: 50%;
+  //   transform: translateX(-50%);
+  //   width: 0;
+  //   height: 0;
+  //   border-style: solid;
+  //   top: 28px;
+  // }
+  // &::after {
+  //   border-color: red transparent transparent transparent;
+  //   border-width: 8px;
+  // }
+  // &::before {
+  //   content: '';
+  //   border-color: rgba(0, 0, 0, 0.2) transparent transparent transparent;
+  //   border-width: 9px;
+  // }
+}

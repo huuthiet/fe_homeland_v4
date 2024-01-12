@@ -1,0 +1,23 @@
+.room-box {
+  color: white;
+  padding: 20px 0;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Opera and Firefox */
+  &.rented {
+    background-color: red;
+  }
+  &.available {
+    background-color: rgb(69, 168, 69);
+  }
+  &.deposited {
+    background-color: orange;
+  }
+}

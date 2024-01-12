@@ -1,0 +1,50 @@
+.motel-detail-wrapper {
+  .status-bar {
+      margin-bottom: 25px;
+    .status-item {
+      display: inline-block;
+      width: 25%;
+      text-align: center;
+      color: white;
+      height: 50px;
+      font-size: 14px;
+      position: relative;
+      cursor: pointer;
+      &.total {
+        background-color: brown;
+        &::after {
+            color: brown;
+        }
+      }
+      &.rented {
+        background-color: red;
+        &::after {
+            color: red;
+        }
+      }
+      &.available {
+        background-color: rgb(69, 168, 69);
+        &::after {
+            color: rgb(69, 168, 69);
+        }
+      }
+      &.deposited {
+        background-color: orange;
+        &::after {
+            color: orange;
+        }
+      }
+      &.active {
+        &::after {
+          content: "\f0d7";
+          font-size: 25px;
+          font-family: FontAwesome;
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          top: 34px;
+        }
+      }
+    }
+  }
+}

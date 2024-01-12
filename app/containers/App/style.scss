@@ -1,0 +1,16 @@
+.app-wrapper {
+  .hidden {
+    display: none;
+  }
+  .profile-wrapper {
+    position: absolute;
+    z-index: 1;
+    right: 25px;
+    margin: 10px;
+    display: flex;
+    .profile {
+      cursor: pointer;
+      width: 25px;
+    }
+  }
+}

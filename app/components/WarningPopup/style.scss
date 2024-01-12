@@ -1,0 +1,14 @@
+.warning-popup-wrapper {
+  max-width: 500px;
+  .content {
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .btn-wrapper {
+    .btn {
+      font-weight: bold;
+      color: white;
+    }
+  }
+}

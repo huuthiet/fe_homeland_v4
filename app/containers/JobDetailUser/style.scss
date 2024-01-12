@@ -1,0 +1,30 @@
+.job-detail-wapper {
+    .image-wrapper {
+        margin-top: 10px;
+        height: 0;
+        width: 100%;
+        padding-bottom: 60%;
+        position: relative;
+        overflow: hidden;
+        img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+            z-index: 1;
+        }
+    }
+    .date-custom {
+        input {
+            display: none;
+        }
+        .MuiInput-underline:before,
+        .MuiInput-underline:hover:not(.Mui-disabled):before {
+            border-bottom: none;
+        }
+    }
+}

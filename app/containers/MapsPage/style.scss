@@ -1,0 +1,78 @@
+.maps-page-wrapper {
+    position: relative;
+    height: calc(var(--vh, 1vh) * 100);
+    .close {
+        position: absolute;
+        top: 0;
+        right: 5px;
+    }
+    .status-wrapper {
+        width: 100%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 20px;
+        display: flex;
+        justify-content: space-between;
+        padding: 5px;
+        text-shadow: -1px 0 white, 0 1px white, 1px 0 white, 0 -1px white;
+        font-weight: bold;
+        .green-box {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: green;
+            display: inline;
+            margin-right: 10px;
+            padding: 0 15px;
+        }
+        .red-box {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: red;
+            display: inline;
+            margin-right: 10px;
+            padding: 0 15px;
+        }
+        .orange-box {
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            background-color: orange;
+            display: inline;
+            margin-right: 10px;
+            padding: 0 15px;
+        }
+    }
+    .detail-wrapper {
+        position: absolute;
+        bottom: 10px;
+        width: 100%;
+        .container {
+            position: relative;
+        }
+        cursor: pointer;
+        .row {
+            font-size: 14px;
+            background-color: white;
+            padding: 15px 0;
+            min-height: 200px;
+            .full-image {
+                position: relative;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    height: auto;
+                    top: 0;
+                    bottom: 0;
+                    left: 15px;
+                    right: 15px;
+                    margin: auto;
+                    position: absolute;
+                }
+            }
+            .title {
+                font-weight: bold;
+            }
+            .price {
+                color: red;
+                font-weight: bold;
+            }
+        }
+    }
+}
