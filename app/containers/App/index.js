@@ -51,7 +51,8 @@ import ManagerEnergyRooms from 'containers/ManagerEnergyRooms/Loadable';
 import ManagerEnergyBuildings from 'containers/ManagerEnergyBuildings/Loadable';
 import EnergyDetail from 'containers/EnergyDetail/Loadable';
 import ScadaElectricEMS from 'containers/ScadaElectricEMS/Loadable';
-import FollowEnergy from 'containers/FollowEnergy/Loadable';
+import FollowEnergyAdmin from 'containers/FollowEnergyAdmin/Loadable';
+import FollowEnergyUser from 'containers/FollowEnergyUser/Loadable';
 
 //----------------------------
 import PropTypes from 'prop-types';
@@ -228,7 +229,8 @@ export function App(props) {
           path="/admin/scada-electric-ems"
           component={ScadaElectricEMS}
         />
-        <Route path="/admin/follow-energy/:id" component={FollowEnergy} />
+        <Route path="/admin/follow-energy/:id" component={FollowEnergyAdmin} />
+        <Route path="/follow-energy/:id" component={FollowEnergyUser} />
 
         {/* /////////////////////// */}
         
