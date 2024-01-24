@@ -113,6 +113,7 @@ export function App(props) {
     alert = {},
     listroom,
   } = props.app;
+  console.log("currentUser app", currentUser);
   useEffect(() => {
     props.saveCurrentUser(localStore.get('user') || {});
   }, []);
@@ -220,7 +221,11 @@ export function App(props) {
         <Route path="/admin/historyRoomHost" component={HistoryRoomHostAdmin} />
 
         {/* note */}
-        <Route path="/admin/manager-energy-rooms" component={ManagerEnergyRooms} />
+        <Route
+          path="/admin/manager-energy-rooms"
+          component={ManagerEnergyRooms}
+          currentUser={currentUser}
+          />
 
         <Route path="/admin/manager-energy-buildings" component={ManagerEnergyBuildings} />
 

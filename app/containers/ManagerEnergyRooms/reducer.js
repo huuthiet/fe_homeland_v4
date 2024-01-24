@@ -1,0 +1,34 @@
+/*
+ *
+ * JobDetail reducer
+ *
+ */
+import produce from 'immer';
+
+import {
+    GET_LIST_DEVICE_ENERGY_SUCCESS,
+    GET_LIST_DEVICE_ENERGY_FAIL,
+    CHANGE_STORE_DATA,
+} from './constants';
+
+export const initialState = {
+  listDeviceEnergy: [],
+};
+
+/* eslint-disable default-case, no-param-reassign */
+const listDeviceEnergyReducer = (state = initialState, action) =>
+  produce(state, draft => {
+    switch (action.type) {
+      case GET_LIST_DEVICE_ENERGY_SUCCESS:
+        draft.listDeviceEnergy = action.response.data;
+        break;
+      case GET_LIST_DEVICE_ENERGY_FAIL:
+        draft.listDeviceEnergy = action.error.errors;
+        break;
+      case CHANGE_STORE_DATA:
+        draft[action.key] = action.value;
+        break;
+    }
+  });
+
+export default listDeviceEnergyReducer;

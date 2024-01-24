@@ -90,7 +90,7 @@ const FollowEnergyUser = () => {
         try {
           const response = await axios.get(apiUrl);
 
-          setCurrentElectric(response.data.data.Records[0].Value.Current);
+          setCurrentElectric(response.data.Current);
       
           console.log("getCurrentElectric", response.data)
         } catch (error) {
@@ -141,7 +141,7 @@ const FollowEnergyUser = () => {
           console.log("Đã chọn 00000")
           setLabelLineChart(labelsInDay);
         } else if (value === 1) {
-          apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentMonDataPerDay/${id}`;
+          apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentMonDataPerDay/${id}/2024/01`;
           setLabelLineChart(labelsInMon);
           console.log("Đã chọn 1111111111111", apiKwh);
         } 

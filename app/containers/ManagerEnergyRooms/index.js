@@ -5,6 +5,8 @@
  */
 
 import React, {useState, useEffect} from 'react';
+import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 import {
   Grid, 
@@ -19,6 +21,7 @@ import {
 import { Link } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import axios, { AxiosResponse } from 'axios';
 
@@ -26,8 +29,24 @@ import messages from './messages';
 import { urlLink } from '../../helper/route';
 import './style.scss';
 
+// import { useInjectReducer } from 'utils/injectReducer';
+// import { useInjectSaga } from 'utils/injectSaga';
+// import reducer from './reducer';
+// import saga from './saga';
+// import makeSelectListDeviceEnergy from './selectors';
+
 
 const ManagerEnergyRooms = props => {
+  // useInjectReducer({ key: 'listDeviceEnergy', reducer });
+  // useInjectSaga({ key: 'listDeviceEnergy', saga });
+
+  // const { listDeviceEnergy } = props.listDeviceEnergy;
+
+  // console.log("listDeviceEnergy", listDeviceEnergy);
+
+  const { currentUser } = props;
+
+  console.log("currentUser", currentUser);
   
   const [roomList, setRoomList] = useState([]);
 
@@ -83,12 +102,16 @@ useEffect(() => {
 
   return (
     <div className="container">
-      <Helmet>
-        <title>Energy</title>
-        <meta name="description" content="Description of Energy" />
-      </Helmet>
+      
+      {/* {!_.isEmpty(currentUser) ? ( */}
+        <>
+        <Helmet>
+          <title>Energy</title>
+          <meta name="description" content="Description of Energy" />
+        </Helmet>
       <div className="title-abc">Quản lý năng lượng các phòng</div>
-      <Grid lg={12} container spacing={2}>
+      {/* {currentUser.role.includes('host') && ( */}
+        <Grid lg={12} container spacing={2}>
         {roomList.map((room, index) => (
           <>
           <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
@@ -116,28 +139,12 @@ useEffect(() => {
         </Grid>
           </>
         ))}
-        {/* <Grid item lg={3} md={4} sm={6} xs={12}>
-          <Card sx={{ maxWidth: 345 }}>
-            <CardMedia
-              component="img"
-              alt="green iguana"
-              height="140"
-              image="../../images/air_conditioner.png"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
-                Tủ 1
-              </Typography>
-              <Typography variant="body2" color="text.secondary">
-                Thông số last update
-              </Typography>
-            </CardContent>
-            <CardActions style={{ justifyContent: 'center' }}>
-              <Button variant="contained" size="small">Xem chi tiết</Button>
-            </CardActions>
-          </Card>
-        </Grid> */}
       </Grid>
+      {/* )} */}
+        </>
+      {/* ) : (
+        <h1>Không có quyền truy cập</h1>
+      )} */}
     </div>
   );
 }
