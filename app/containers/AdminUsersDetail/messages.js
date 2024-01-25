@@ -76,6 +76,10 @@ export default defineMessages({
     id: `${scope}.email`,
     defaultMessage: 'Vui lòng nhập email',
   },
+  idDevice: {
+    id: `${scope}.idDevice`,
+    defaultMessage: 'Mã số đồng hồ điện',
+  },
   firstNameenter: {
     id: `${scope}.firstNameenter`,
     defaultMessage: 'Nhập tên',

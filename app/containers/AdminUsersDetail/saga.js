@@ -68,6 +68,7 @@ export function* apiPutProfile(payload) {
     nationalId: payloadBody.nationalId,
     phoneNumberFull: payloadBody.phoneNumberFull,
     gender: payloadBody.gender.key,
+    idDevice: payloadBody.idDevice,
   };
 
   yield put(loadRepos());

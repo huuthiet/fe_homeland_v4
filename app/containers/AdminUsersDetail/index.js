@@ -82,6 +82,7 @@ export function AdminUsersDetail(props) {
     frontId = '',
     backId = '',
     phoneNumberFull = '',
+    idDevice = '',
     phoneNumber = {
       countryCode: '',
       number: '',
@@ -191,6 +192,7 @@ export function AdminUsersDetail(props) {
             email,
             nationalId,
             address,
+            idDevice,
             dobAction: dob,
             gender: {
               key: gender,
@@ -298,7 +300,7 @@ export function AdminUsersDetail(props) {
                       </FormattedMessage>
                     }
                   </Col>
-                  <Col md={12}>
+                  <Col md={8}>
                     {
                       <FormattedMessage {...messages.email}>
                         {msg => (
@@ -316,6 +318,29 @@ export function AdminUsersDetail(props) {
                             }}
                             onBlur={handleBlur}
                             type="email"
+                          />
+                        )}
+                      </FormattedMessage>
+                    }
+                  </Col>
+                  <Col md={4}>
+                    {
+                      <FormattedMessage {...messages.idDevice}>
+                        {msg => (
+                          <InputForm
+                            label={<FormattedMessage {...messages.idDevice} />}
+                            placeholder={msg}
+                            name="idDevice"
+                            icon="fa fa-envelope"
+                            touched={touched.idDevice}
+                            value={values.idDevice}
+                            error={errors.idDevice}
+                            autoComplete="idDevice"
+                            onChange={evt => {
+                              handleChange(evt);
+                            }}
+                            onBlur={handleBlur}
+                            type="text"
                           />
                         )}
                       </FormattedMessage>
