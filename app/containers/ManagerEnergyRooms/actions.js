@@ -1,14 +1,19 @@
+/*
+ *
+ * Profile actions
+ *
+ */
+
 import {
+    CHANGE_STORE_DATA,
     GET_LIST_DEVICE_ENERGY,
     GET_LIST_DEVICE_ENERGY_SUCCESS,
-    GET_LIST_DEVICE_ENERGY_FAIL,
-    CHANGE_STORE_DATA,
-  } from './constants';
+    GET_LIST_DEVICE_ENERGY_FAIL
+} from './constants';
 
-export function getListDeviceEnergy(id) {
+export function getListDeviceEnergy() {
     return {
         type: GET_LIST_DEVICE_ENERGY,
-        id,
     };
 }
 
@@ -28,8 +33,8 @@ export function getListDeviceEnergyFail(error) {
 
 export function changeStoreData(key, value) {
     return {
-      type: CHANGE_STORE_DATA,
-      key,
-      value,
+        type: CHANGE_STORE_DATA,
+        key,
+        value,
     };
-  }
+}

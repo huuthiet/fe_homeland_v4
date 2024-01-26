@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
 /**
- * Direct selector to the jobDetailUser state domain
+ * Direct selector to the profile state domain
  */
 
 const selectListDeviceEnergyDomain = state => state.listDeviceEnergy || initialState;
@@ -12,14 +12,14 @@ const selectListDeviceEnergyDomain = state => state.listDeviceEnergy || initialS
  */
 
 /**
- * Default selector used by JobDetailUser
+ * Default selector used by Profile
  */
 
 const makeSelectListDeviceEnergy = () =>
-    createSelector(
-        selectListDeviceEnergyDomain,
-        substate => substate,
-    );
+  createSelector(
+    selectListDeviceEnergyDomain,
+    substate => substate,
+  );
 
 export default makeSelectListDeviceEnergy;
 export { selectListDeviceEnergyDomain };

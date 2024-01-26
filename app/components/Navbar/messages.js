@@ -12,6 +12,14 @@ export default defineMessages({
     id: `${scope}.home`,
     defaultMessage: 'Trang chủ',
   },
+  energyRooms: {
+    id: `${scope}.energyRooms`,
+    defaultMessage: 'Quản lý năng lượng các phòng',
+  },
+  energyUser: {
+    id: `${scope}.energyUser`,
+    defaultMessage: 'Quản lý năng lượng tiêu thụ',
+  },
   contact: {
     id: `${scope}.contact`,
     defaultMessage: 'Điều khoản',

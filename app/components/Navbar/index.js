@@ -350,6 +350,9 @@ const Navbar = props => {
                       <DropdownItem href="/admin/users">
                         <FormattedMessage {...messages.user} />
                       </DropdownItem>
+                      <DropdownItem href="/admin/manager-energy-rooms">
+                        <FormattedMessage {...messages.energyRooms} />
+                      </DropdownItem>
                       {/* <DropdownItem href="/admin/job/list">
                         <FormattedMessage {...messages.job} />
                       </DropdownItem> */}
@@ -375,6 +378,16 @@ const Navbar = props => {
                         <FormattedMessage {...messages.reportProblemList} />
                       </DropdownItem>
                     </Fragment>
+                  )}
+
+                  {currentUser.role.length === 1 && (
+                    <DropdownItem
+                      onClick={() => {
+                        history.push('/follow-energy');
+                      }}
+                    >
+                      <FormattedMessage {...messages.energyUser} />
+                    </DropdownItem>
                   )}
 
                   <DropdownItem

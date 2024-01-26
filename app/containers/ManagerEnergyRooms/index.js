@@ -7,6 +7,8 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
+import localStore from 'local-storage';
+import { createStructuredSelector } from 'reselect';
 
 import {
   Grid, 
@@ -29,59 +31,55 @@ import messages from './messages';
 import { urlLink } from '../../helper/route';
 import './style.scss';
 
-// import { useInjectReducer } from 'utils/injectReducer';
-// import { useInjectSaga } from 'utils/injectSaga';
-// import reducer from './reducer';
-// import saga from './saga';
-// import makeSelectListDeviceEnergy from './selectors';
+import { connect } from 'react-redux';
+import { compose } from 'redux';
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import {
+  changeStoreData,
+  getListDeviceEnergy,
+} from './actions';
+
+import reducer from './reducer';
+import saga from './saga';
+import makeSelectListDeviceEnergy from './selectors';
 
 
 const ManagerEnergyRooms = props => {
-  // useInjectReducer({ key: 'listDeviceEnergy', reducer });
-  // useInjectSaga({ key: 'listDeviceEnergy', saga });
+  const currentUser = localStore.get('user') || {};
 
-  // const { listDeviceEnergy } = props.listDeviceEnergy;
+  useInjectReducer({ key: 'listDeviceEnergy', reducer });
+  useInjectSaga({ key: 'listDeviceEnergy', saga });
 
-  // console.log("listDeviceEnergy", listDeviceEnergy);
+  // const [roomList, setRoomList] = useState([]);
 
-  const { currentUser } = props;
+  const {listDeviceEnergy = [] } = props.listDeviceEnergy;
 
-  console.log("currentUser", currentUser);
+  useEffect(() => {
+    props.getListDeviceEnergy();
+  }, []);
   
-  const [roomList, setRoomList] = useState([]);
 
   // const [dataLineChart, setDataLineChart] = useState([]);
 
 
-const fetchData = async () => {
-  const apiUrl = urlLink.api.serverUrl + urlLink.api.getListDeviceEnergy;
-  try {
-    const response = await axios.get(apiUrl);
+// const fetchData = async () => {
+//   const apiUrl = urlLink.api.serverUrl + urlLink.api.getListDeviceEnergy;
+//   try {
+//     const response = await axios.get(apiUrl);
 
-    setRoomList(response.data.data);
+//     setRoomList(response.data.data);
 
-    console.log('dataa', roomList);
-  } catch (error) {
-    console.error('Error fetching data:', error);
-  }
-};
+//     console.log('dataa', roomList);
+//   } catch (error) {
+//     console.error('Error fetching data:', error);
+//   }
+// };
 
-useEffect(() => {
-  fetchData();
-}, []);
 // useEffect(() => {
 //   fetchData();
+// }, []);
 
-//   const intervalId = setInterval(() => {
-//     fetchData();
-//   }, 60 * 60 * 1000);
-
-//   return () => {
-//     clearInterval(intervalId);
-//   };
-// }, [rangeTime]);
-
-  // const layouts = getLayoutsFromSomewhere();
   const layouts = [
     { i: '1', x: 0, y: 0, w: 1, h: 1 },
     { i: '2', x: 1, y: 0, w: 1, h: 1 },
@@ -98,8 +96,6 @@ useEffect(() => {
     height: '100px',
   };
 
- 
-
   return (
     <div className="container">
       
@@ -109,10 +105,10 @@ useEffect(() => {
           <title>Energy</title>
           <meta name="description" content="Description of Energy" />
         </Helmet>
-      <div className="title-abc">Quản lý năng lượng các phòng</div>
+        <div className="title-abc">Quản lý năng lượng các phòng</div>
       {/* {currentUser.role.includes('host') && ( */}
         <Grid lg={12} container spacing={2}>
-        {roomList.map((room, index) => (
+        {listDeviceEnergy.map((room, index) => (
           <>
           <Grid key={index} item lg={3} md={4} sm={6} xs={12}>
             <Card sx={{ maxWidth: 345 }}>
@@ -131,7 +127,7 @@ useEffect(() => {
                 </Typography>
               </CardContent>
               <CardActions style={{ justifyContent: 'center' }}>
-                <Link to={`/admin/follow-energy/${room.Id}`}>
+                <Link to={`/admin/follow-energy/${room.Id}/${room.Name}`}>
                   <Button variant="contained" size="small">Xem chi tiết</Button>
                 </Link>
               </CardActions>
@@ -149,6 +145,23 @@ useEffect(() => {
   );
 }
 
+const mapStateToProps = createStructuredSelector({
+  listDeviceEnergy: makeSelectListDeviceEnergy(),
+});
 
-// export default compose(withConnect)(CreateRoom);
-export default ManagerEnergyRooms;
+function mapDispatchToProps(dispatch) {
+  return {
+    getListDeviceEnergy: () => {
+      dispatch(getListDeviceEnergy());
+    },
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+
+// export default ManagerEnergyRooms;
+export default compose(withConnect)(ManagerEnergyRooms);

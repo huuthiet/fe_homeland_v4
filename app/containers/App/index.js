@@ -224,7 +224,6 @@ export function App(props) {
         <Route
           path="/admin/manager-energy-rooms"
           component={ManagerEnergyRooms}
-          currentUser={currentUser}
           />
 
         <Route path="/admin/manager-energy-buildings" component={ManagerEnergyBuildings} />
@@ -234,8 +233,8 @@ export function App(props) {
           path="/admin/scada-electric-ems"
           component={ScadaElectricEMS}
         />
-        <Route path="/admin/follow-energy/:id" component={FollowEnergyAdmin} />
-        <Route path="/follow-energy/:id" component={FollowEnergyUser} />
+        <Route path="/admin/follow-energy/:id/:name" component={FollowEnergyAdmin} />
+        <Route path="/follow-energy/" component={FollowEnergyUser} />
 
         {/* /////////////////////// */}
         
