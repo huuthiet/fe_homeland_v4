@@ -15,8 +15,14 @@ const styles = {
     color: "#000"
   }
 };
+// ({ id, value, title })
+const Speedometer =  props => {
+  const {id, value, title} = props;
 
-const Speedometer = ({ id, value, title }) => {
+
+  // console.log("value speedmetter", value);
+  // console.log("value speedmetter", id);
+  // console.log("value speedmetter", title);
   return (
     <div style={styles.dial}>
       <ReactSpeedometer

@@ -100,7 +100,6 @@ const useStyles = makeStyles(theme => ({
 const Navbar = props => {
   const history = useHistory();
   const { currentUser = {}, listroom } = props;
-  console.log("currentUser Nabar", currentUser);
   const [toggle, setToggle] = useState(false);
   const classes = useStyles();
   const typingTimeoutRef = useRef(null);

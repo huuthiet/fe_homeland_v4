@@ -113,7 +113,6 @@ export function App(props) {
     alert = {},
     listroom,
   } = props.app;
-  console.log("currentUser app", currentUser);
   useEffect(() => {
     props.saveCurrentUser(localStore.get('user') || {});
   }, []);

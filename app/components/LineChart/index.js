@@ -35,7 +35,7 @@ const LineChart = ({textY, nameChart, dataEnergy, labelsEnergy}) => {
         dataLine = dataEnergy;
     }
 
-    console.log("dataLine", dataLine);
+    // console.log("dataLine", dataLine);
 
 
     const data = {

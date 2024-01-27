@@ -58,6 +58,8 @@ const ManagerEnergyRooms = props => {
   useEffect(() => {
     props.getListDeviceEnergy();
   }, []);
+
+  console.log("listDeviceEnergy", listDeviceEnergy)
   
 
   // const [dataLineChart, setDataLineChart] = useState([]);
@@ -123,7 +125,7 @@ const ManagerEnergyRooms = props => {
                   {room.Name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                  Thông số last update
+                  Id đồng hồ: {room.Id}
                 </Typography>
               </CardContent>
               <CardActions style={{ justifyContent: 'center' }}>
