@@ -70,7 +70,14 @@ export const urlLink = {
     getDataEnergyPerHour: '/v1/homeKey/energy/device/currentDayDataPerHour/',
     getDataEnergyPerDay: '/v1/homeKey/energy/device/currentMonDataPerDay/',
     getNameRoomByIdDevice: '/v1/homeKey/energy/device/getNameRoomById/',
-    // + :id
+    getBankUser: '/v1/user/bank',
+    postRequestWithdraw: '/v1/user/requestWithdraws/',
+    getRequestWithdrawUserList: '/v1/user/requestWithdraws/list',
+    getRequestWithdrawList: '/v1/admin/requestWithdraws/',
+    deleteBankUser: '/v1/user/bank/', /* + id*/ 
+    postBankUser: '/v1/user/bank/', /* + id*/ 
+    getBankNameList: '/v1/user/bankname',
+
     // -------
   },
   auth: {

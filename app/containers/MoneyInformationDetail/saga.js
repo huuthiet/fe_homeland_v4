@@ -22,12 +22,12 @@ import {
 
 export function* apiPostAddBank(payload) {
   const data = payload.payload;
-  const requestUrl = urlLink.api.serverUrl + urlLink.api.postBank + data.id;
+  const requestUrl = urlLink.api.serverUrl + urlLink.api.postBankUser + data.id;
   yield put(loadRepos());
   try {
     const response = yield axios.post(requestUrl, data);
     yield put(addBankSuccess(response.data.data));
-    yield put(push(`/admin/money-information`));
+    yield put(push(`/money-information`));
   } catch (error) {
     yield put(addBankFail(error.response.data));
   } finally {
@@ -37,7 +37,7 @@ export function* apiPostAddBank(payload) {
 
 export function* apiGetDetailBank(payload) {
   const id = payload.payload;
-  const requestUrl = urlLink.api.serverUrl + urlLink.api.postBank + id;
+  const requestUrl = urlLink.api.serverUrl + urlLink.api.postBankUser + id;
 
   yield put(loadRepos());
   try {
@@ -51,7 +51,7 @@ export function* apiGetDetailBank(payload) {
 }
 
 export function* apiGetMasterBankName(payload) {
-  const requestUrl = urlLink.api.serverUrl + urlLink.api.postBankNameList;
+  const requestUrl = urlLink.api.serverUrl + urlLink.api.getBankNameList;
 
   yield put(loadRepos());
   try {

@@ -53,6 +53,9 @@ import EnergyDetail from 'containers/EnergyDetail/Loadable';
 import ScadaElectricEMS from 'containers/ScadaElectricEMS/Loadable';
 import FollowEnergyAdmin from 'containers/FollowEnergyAdmin/Loadable';
 import FollowEnergyUser from 'containers/FollowEnergyUser/Loadable';
+import Withdraw from 'containers/Withdraw/Loadable';
+import RequestWithdrawUserList from 'containers/RequestWithdrawUserList/Loadable';
+import RequestWithdrawList from 'containers/RequestWithdrawList/Loadable';
 
 //----------------------------
 import PropTypes from 'prop-types';
@@ -172,10 +175,14 @@ export function App(props) {
         <Route path="/admin/users/:id" component={AdminUsersDetail} />
         <Route path="/admin/users" component={AdminUsers} />
         <Route
-          path="/admin/money-information/:id"
+          path="/money-information/:id"
           component={MoneyInformationDetail}
         />
-        <Route path="/admin/money-information" component={MoneyInformation} />
+        {/* <Route
+          path="/admin/money-information/:id"
+          component={MoneyInformationDetail}
+        /> */}
+        <Route path="/money-information" component={MoneyInformation} />
         <Route path="/admin/job/list" component={JobList} />
         <Route path="/admin/user/job/list/:id" component={JobListUser} />
         <Route path="/admin/job/detail/:id" component={JobDetail} />
@@ -234,6 +241,22 @@ export function App(props) {
         />
         <Route path="/admin/follow-energy/:id/:name" component={FollowEnergyAdmin} />
         <Route path="/follow-energy/" component={FollowEnergyUser} />
+
+        <Route path="/withdraw" component={Withdraw} />
+
+        <Route
+          path="/requestWithdraw/user/list"
+          component={RequestWithdrawUserList}
+        />
+        <Route
+          path="/admin/requestWithdraw/list"
+          component={RequestWithdrawList}
+        />
+
+        {/* <Route
+          path="/money-information/:id"
+          component={MoneyInformationDetail}
+        /> */}
 
         {/* /////////////////////// */}
         

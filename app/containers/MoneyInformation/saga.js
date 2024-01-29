@@ -12,7 +12,7 @@ import {
 import { loadRepos, reposLoaded } from '../App/actions';
 // import { take, call, put, select } from 'redux-saga/effects';
 export function* apiGetAdminBank() {
-  const requestUrl = urlLink.api.serverUrl + urlLink.api.postBank;
+  const requestUrl = urlLink.api.serverUrl + urlLink.api.getBankUser;
   yield put(loadRepos());
   try {
     const response = yield axios.get(requestUrl);
@@ -26,7 +26,7 @@ export function* apiGetAdminBank() {
 
 export function* apiDeteteAdminBank(payload) {
   const { id } = payload;
-  const requestUrl = urlLink.api.serverUrl + urlLink.api.postBank + id;
+  const requestUrl = urlLink.api.serverUrl + urlLink.api.deleteBankUser + id;
   yield put(loadRepos());
   try {
     const response = yield axios.delete(requestUrl);

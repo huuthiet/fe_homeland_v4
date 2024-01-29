@@ -121,4 +121,20 @@ export default defineMessages({
     id: `${scope}.addMoney`,
     defaultMessage: 'Nạp Tiền',
   },
+  withdrawPayment: {
+    id: `${scope}.withdrawPayment`,
+    defaultMessage: 'Quản lý Yêu cầu Rút tiền',
+  },
+  LogRequestWithdraw: {
+    id: `${scope}.LogRequestWithdraw`,
+    defaultMessage: 'Nhật Ký Rút Tiền',
+  },
+  withdraw: {
+    id: `${scope}.withdraw`,
+    defaultMessage: 'Rút tiền',
+  },
+  wallet: {
+    id: `${scope}.wallet`,
+    defaultMessage: 'Số dư',
+  },
 });

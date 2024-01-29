@@ -1,4 +1,4 @@
-import React, { useState, Fragment, useRef } from 'react';
+import React, { useState, Fragment, useRef, useEffect } from 'react';
 import ClassNames from 'classnames';
 import { NavLink, useHistory } from 'react-router-dom';
 import _ from 'lodash';
@@ -24,6 +24,24 @@ import img1 from './vi.png';
 import messages from './messages';
 import MenuButton from '../MenuButton';
 import Money from '../../containers/App/format';
+
+//note 
+import { compose } from 'redux';
+import { createStructuredSelector } from 'reselect';
+import makeSelectProfile from '../../containers/Profile/selectors';
+import { connect } from 'react-redux';
+
+import {
+  getProfile,
+} from '../../containers/Profile/actions';
+
+import localStore from 'local-storage';
+
+import { useInjectReducer } from 'utils/injectReducer';
+import { useInjectSaga } from 'utils/injectSaga';
+import reducer from '../../containers/Profile/reducer';
+import saga from '../../containers/Profile/saga';
+// ---------------------
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -103,6 +121,22 @@ const Navbar = props => {
   const [toggle, setToggle] = useState(false);
   const classes = useStyles();
   const typingTimeoutRef = useRef(null);
+
+  // note 
+  useInjectReducer({ key: 'profile', reducer });
+  useInjectSaga({ key: 'profile', saga });
+  const {
+    profile ={}
+  } = props.profile;
+
+  console.log(profile);
+  console.log(props);
+
+  useEffect(() => {
+    props.getProfile();
+    console.log("useEffect");
+  }, []);
+  //-----------------------
 
   const menulistSearch = listroom.length > 0 && (
     <div className="listroommenu">
@@ -245,6 +279,29 @@ const Navbar = props => {
           )}
         >
           <ul className="site-main-menu">
+            {/* note */}
+            {!_.isEmpty(currentUser) && (
+              <li>
+                <strong>
+                  <FormattedMessage {...messages.wallet} />:
+                </strong>
+                {Money(Number(profile.wallet))}
+              </li>
+            )}
+
+            {!_.isEmpty(currentUser) && (
+              <li>
+                <NavLink
+                  exact
+                  to="/withdraw"
+                  onClick={() => {
+                    setToggle(false);
+                  }}
+                >
+                  <FormattedMessage {...messages.withdraw} />
+                </NavLink>
+              </li>)}
+              {/* ------------------------------- */}
             <li>
               <NavLink
                 exact
@@ -289,6 +346,13 @@ const Navbar = props => {
                     }}
                   >
                     <FormattedMessage {...messages.reportProblemList} />
+                  </DropdownItem>
+                  <DropdownItem
+                    onClick={() => {
+                      history.push('/money-information');
+                    }}
+                  >
+                    <FormattedMessage {...messages.money} />
                   </DropdownItem>
                   {currentUser.role.includes('host') && (
                     <>
@@ -361,9 +425,11 @@ const Navbar = props => {
                       <DropdownItem href="/admin/transaction/list">
                         <FormattedMessage {...messages.transactionPayment} />
                       </DropdownItem>
-                      <DropdownItem href="/admin/money-information">
-                        <FormattedMessage {...messages.money} />
+                      {/* note */}
+                      <DropdownItem href="/admin/requestWithdraw/list">
+                        <FormattedMessage {...messages.withdrawPayment} />
                       </DropdownItem>
+                      {/* ----------------- */}
                       <DropdownItem href="/admin/hostMotelRoom">
                         <FormattedMessage {...messages.host} />
                       </DropdownItem>
@@ -404,6 +470,16 @@ const Navbar = props => {
                   >
                     <FormattedMessage {...messages.LogtransactionPayment} />
                   </DropdownItem>
+
+                  {/* note */}
+                  <DropdownItem
+                    onClick={() => {
+                      history.push('/requestWithdraw/user/list');
+                    }}
+                  >
+                    <FormattedMessage {...messages.LogRequestWithdraw} />
+                  </DropdownItem>
+                  {/* ------------------- */}
 
                   <DropdownItem
                     onClick={() => {
@@ -487,8 +563,28 @@ const Navbar = props => {
 };
 
 Navbar.propTypes = {
+  dispatch: PropTypes.func,
   currentUser: PropTypes.object,
   changeStoreData: PropTypes.func,
 };
 
-export default Navbar;
+const mapStateToProps = createStructuredSelector({
+  profile: makeSelectProfile(),
+});
+
+function mapDispatchToProps(dispatch) {
+  return {
+    getProfile: () => {
+      dispatch(getProfile());
+    },
+  };
+}
+
+const withConnect = connect(
+  mapStateToProps,
+  mapDispatchToProps,
+);
+
+export default compose(withConnect)(Navbar);
+
+// export default Navbar;

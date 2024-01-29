@@ -44,7 +44,7 @@ export function MoneyInformation(props) {
           color="success"
           onClick={() => {
             /* eslint no-underscore-dangle: 0 */
-            history.push(`/admin/money-information/add`);
+            history.push(`/money-information/add`);
           }}
         >
           <i className="fa fa-edit" aria-hidden="true">
@@ -83,7 +83,7 @@ export function MoneyInformation(props) {
                     color="success"
                     onClick={() => {
                       /* eslint no-underscore-dangle: 0 */
-                      history.push(`/admin/money-information/${bank._id}`);
+                      history.push(`/money-information/${bank._id}`);
                     }}
                   >
                     <i className="fa fa-edit" aria-hidden="true">
