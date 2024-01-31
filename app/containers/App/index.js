@@ -52,6 +52,7 @@ import ManagerEnergyBuildings from 'containers/ManagerEnergyBuildings/Loadable';
 import EnergyDetail from 'containers/EnergyDetail/Loadable';
 import ScadaElectricEMS from 'containers/ScadaElectricEMS/Loadable';
 import FollowEnergyAdmin from 'containers/FollowEnergyAdmin/Loadable';
+import FollowEnergyHost from 'containers/FollowEnergyHost/Loadable';
 import FollowEnergyUser from 'containers/FollowEnergyUser/Loadable';
 import Withdraw from 'containers/Withdraw/Loadable';
 import RequestWithdrawUserList from 'containers/RequestWithdrawUserList/Loadable';
@@ -241,7 +242,14 @@ export function App(props) {
           path="/admin/scada-electric-ems"
           component={ScadaElectricEMS}
         />
-        <Route path="/admin/follow-energy/:id/:name" component={FollowEnergyAdmin} />
+        <Route
+          path="/admin/follow-energy/:id/:name"
+          component={FollowEnergyAdmin}
+        />
+        <Route
+          path="/host/follow-energy/:id/:name"
+          component={FollowEnergyHost}
+        />
         <Route path="/follow-energy/" component={FollowEnergyUser} />
 
         <Route path="/withdraw" component={Withdraw} />
@@ -261,7 +269,7 @@ export function App(props) {
         />
 
         <Route
-          path="/manager-energy-rooms-host/:id"
+          path="/manager-energy-rooms-host/:id/:name"
           component={ManagerEnergyRoomsHost}
         />
 

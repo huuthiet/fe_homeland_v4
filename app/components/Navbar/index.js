@@ -365,6 +365,13 @@ const Navbar = props => {
                       </DropdownItem>
                       <DropdownItem
                         onClick={() => {
+                          history.push('/manager-energy-buildings-host');
+                        }}
+                      >
+                        <FormattedMessage {...messages.energyManager} />
+                      </DropdownItem>
+                      <DropdownItem
+                        onClick={() => {
                           history.push('/order/list');
                         }}
                       >

@@ -118,7 +118,7 @@ export function ManagerEnergyBuildingsHost(props) {
                       <Col xs={4} className="motel-edit">
                         <div
                           onClick={() => {
-                            history.push(`/manager-energy-rooms-host/${motel._id}`);
+                            history.push(`/manager-energy-rooms-host/${motel._id}/${motel.name}`);
                           }}
                         >
                           <div>

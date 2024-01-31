@@ -12,6 +12,10 @@ export default defineMessages({
     id: `${scope}.home`,
     defaultMessage: 'Trang chủ',
   },
+  energyManager: {
+    id: `${scope}.energyManager`,
+    defaultMessage: 'Quản lý năng lượng các tòa',
+  },
   energyRooms: {
     id: `${scope}.energyRooms`,
     defaultMessage: 'Quản lý năng lượng các phòng',
