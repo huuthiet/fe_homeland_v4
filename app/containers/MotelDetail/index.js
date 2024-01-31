@@ -33,6 +33,9 @@ export function MotelDetail(props) {
     props.getMotel(id);
   }, []);
   const { motel = {} } = props.motelDetail;
+
+  console.log("motel", motel);
+
   const {
     totalRoom = '',
     rentedRoom = '',

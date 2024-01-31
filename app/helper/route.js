@@ -77,7 +77,6 @@ export const urlLink = {
     deleteBankUser: '/v1/user/bank/', /* + id*/ 
     postBankUser: '/v1/user/bank/', /* + id*/ 
     getBankNameList: '/v1/user/bankname',
-
     // -------
   },
   auth: {

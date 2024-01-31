@@ -40,6 +40,10 @@ export default defineMessages({
     id: `${scope}.NameRoom`,
     defaultMessage: 'Tên phòng',
   },
+  electricMetter: {
+    id: `${scope}.electricMetter`,
+    defaultMessage: 'Mã số đồng hồ điện',
+  },
   AcreageRoom: {
     id: `${scope}.AcreageRoom`,
     defaultMessage: 'Diện tích phòng',

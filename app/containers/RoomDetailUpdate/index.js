@@ -166,6 +166,9 @@ export function RoomDetail(props) {
     room.electricityPrice,
   );
   const [name, setname] = useState(room.name);
+  const [idElectricMetter, setIdElectricMetter] = useState(
+    room.idElectricMetter === '0' ? null : room.idElectricMetter
+  );
   const [price, setprice] = useState(room.price);
   const [waterPrice, setwaterPrice] = useState(room.waterPrice);
   const [minimumMonths, setMinimumMonths] = useState(room.minimumMonths);
@@ -338,7 +341,19 @@ export function RoomDetail(props) {
               }}
             />
           </Col>
-          <Col md={6}>
+          <Col md={3}>
+            <InputForm
+              type="text"
+              label={<FormattedMessage {...messages.electricMetter} />}
+              // min={0}
+              name="electricMetter"
+              value={idElectricMetter}
+              onChange={evt => {
+                setIdElectricMetter(evt.target.value);
+              }}
+            />
+          </Col>
+          <Col md={3}>
             <InputForm
               type="number"
               label={<FormattedMessage {...messages.PriceName} />}
@@ -827,6 +842,7 @@ export function RoomDetail(props) {
                     utilities,
                     id,
                     name,
+                    idElectricMetter,
                     electricityPrice,
                     price,
                     waterPrice,

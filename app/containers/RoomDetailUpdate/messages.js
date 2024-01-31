@@ -57,6 +57,10 @@ export default defineMessages({
     id: `${scope}.PriceName`,
     defaultMessage: 'Giá phòng',
   },
+  electricMetter: {
+    id: `${scope}.electricMetter`,
+    defaultMessage: 'Mã số đồng hồ điện',
+  },
   electricityPrice: {
     id: `${scope}.electricityPrice`,
     defaultMessage: 'Giá điện',

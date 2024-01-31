@@ -187,7 +187,7 @@ export default defineMessages({
   },
   ProfileRoom: {
     id: `${scope}.ProfileRoom`,
-    defaultMessage: 'Nhập thông tin chủ sở hữ nhà trọ',
+    defaultMessage: 'Nhập thông tin chủ sở hữu nhà trọ',
   },
   EnterNumberPhone: {
     id: `${scope}.EnterNumberPhone`,

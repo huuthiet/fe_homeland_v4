@@ -11,7 +11,7 @@ import {
 import { loadRepos, reposLoaded } from '../App/actions';
 
 export function* apiListDeviceEnergy() {
-  const requestUrl = `http://localhost:5502/api/v1/homeKey/energy/devices`;
+  const requestUrl = urlLink.api.serverUrl + urlLink.api.getListDeviceEnergy;
   yield put(loadRepos());
   try {
     const response = yield axios.get(requestUrl);

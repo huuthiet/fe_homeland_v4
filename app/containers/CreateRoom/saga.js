@@ -32,6 +32,7 @@ export function* apiputCreateRoom(payload) {
     idFloors: payload.payload.id,
     utilities: payload.payload.utilities,
     name: payload.payload.name,
+    idElectricMetter: payload.payload.idElectricMetter,
     electricityPrice: payload.payload.electricityPrice,
     price: payload.payload.price,
     waterPrice: payload.payload.waterPrice,

@@ -44,6 +44,8 @@ export function MoneyInformationDetail(props) {
     moneyInformationDetail = {},
     options = [],
   } = props.moneyInformationDetail;
+
+  console.log("moneyInformationDetail", moneyInformationDetail);
   const [submitAction, setSubmitAction] = useState(false);
   const TenMegaBytes = 10 * 1024 * 1024;
   const [loading, setLoading] = useState(false);

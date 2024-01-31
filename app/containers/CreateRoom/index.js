@@ -72,6 +72,7 @@ export function CreateRoom(props) {
 
   const [electricityPrice, setElectricityPrice] = useState(number);
   const [name, setname] = useState(number);
+  const [idElectricMetter, setIdElectricMetter] = useState(0);
   const [acreage, setAcreage] = useState(number);
   const [price, setprice] = useState(number);
   const [waterPrice, setwaterPrice] = useState(number);
@@ -146,7 +147,7 @@ export function CreateRoom(props) {
           </h3>
         </div>
         <Row>
-          <Col md={6}>
+          <Col md={3}>
             <InputForm
               label={<FormattedMessage {...messages.NameRoom} />}
               type="text"
@@ -156,6 +157,19 @@ export function CreateRoom(props) {
               autoComplete="description"
               onChange={evt => {
                 setname(evt.target.value);
+              }}
+            />
+          </Col>
+          <Col md={3}>
+            <InputForm
+              label={<FormattedMessage {...messages.electricMetter} />}
+              type="text"
+              // min={0}
+              name="electricMetter"
+              value={null}
+              autoComplete="description"
+              onChange={evt => {
+                setIdElectricMetter(evt.target.value);
               }}
             />
           </Col>
@@ -638,6 +652,7 @@ export function CreateRoom(props) {
                   utilities,
                   id,
                   name,
+                  idElectricMetter,
                   electricityPrice,
                   price,
                   waterPrice,

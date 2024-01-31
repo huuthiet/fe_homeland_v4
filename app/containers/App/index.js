@@ -56,6 +56,8 @@ import FollowEnergyUser from 'containers/FollowEnergyUser/Loadable';
 import Withdraw from 'containers/Withdraw/Loadable';
 import RequestWithdrawUserList from 'containers/RequestWithdrawUserList/Loadable';
 import RequestWithdrawList from 'containers/RequestWithdrawList/Loadable';
+import ManagerEnergyBuildingsHost from 'containers/ManagerEnergyBuildingsHost/Loadable';
+import ManagerEnergyRoomsHost from 'containers/ManagerEnergyRoomsHost/Loadable';
 
 //----------------------------
 import PropTypes from 'prop-types';
@@ -251,6 +253,16 @@ export function App(props) {
         <Route
           path="/admin/requestWithdraw/list"
           component={RequestWithdrawList}
+        />
+
+        <Route
+          path="/manager-energy-buildings-host"
+          component={ManagerEnergyBuildingsHost}
+        />
+
+        <Route
+          path="/manager-energy-rooms-host/:id"
+          component={ManagerEnergyRoomsHost}
         />
 
         {/* <Route
