@@ -59,6 +59,7 @@ import RequestWithdrawUserList from 'containers/RequestWithdrawUserList/Loadable
 import RequestWithdrawList from 'containers/RequestWithdrawList/Loadable';
 import ManagerEnergyBuildingsHost from 'containers/ManagerEnergyBuildingsHost/Loadable';
 import ManagerEnergyRoomsHost from 'containers/ManagerEnergyRoomsHost/Loadable';
+import ManagerEnergyRoomsUser from 'containers/ManagerEnergyRoomsUser/Loadable';
 
 //----------------------------
 import PropTypes from 'prop-types';
@@ -271,6 +272,11 @@ export function App(props) {
         <Route
           path="/manager-energy-rooms-host/:id/:name"
           component={ManagerEnergyRoomsHost}
+        />
+
+        <Route
+          path="/manager-energy-rooms-user"
+          component={ManagerEnergyRoomsUser}
         />
 
         {/* <Route
