@@ -43,18 +43,15 @@ const FollowEnergyUser2 = props => {
   //   console.log("labelsInMon", labelsInMon)
     const [currentDay, setCurrentDay] = useState(new Date());
     //get Device Id
-    const { idMetter, name } = useParams();
+    // const { id, name } = useParams();
 
-    console.log("idMetter", idMetter);
-    console.log("name", name);
+    // console.log("iddđ", id);
 
     const [labelLineChart, setLabelLineChart] = useState(labelsInDay);
 
     // let apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentDayDataPerHour/${id}`;
     
-    let apiKwh = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerHour + idMetter;
-
-    console.log("apiKwh",apiKwh);
+    let apiKwh = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerHour + idDevice;
 
     const [value, setValue] = useState(0);
     const handleChangeTime = (event, newValue) => {
@@ -82,26 +79,26 @@ const FollowEnergyUser2 = props => {
     //   apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentMonDataPerDay/${id}`;
     //   setLabelLineChart(labelsInMon);
     // } 
-    // const [nameRoom, setNameRoom] = useState('');
-    
-
-    // const getNameRoom = async () => {
-    //   // const apiUrl = urlLink.api.serverUrl + urlLink.api.getListDeviceEnergy;
-    //   const apiUrl = urlLink.api.serverUrl + urlLink.api.getNameRoomByIdDevice + idMetter;
-    //     try {
-    //       const response = await axios.get(apiUrl);
-
-    //       setNameRoom(response.data.data.roomName);
-      
-    //     } catch (error) {
-    //       console.error('Error fetching data:', error);
-    //     }
-    // };
-    // useEffect(() => {
-    //   getNameRoom();
-    // }, [])
-
+    const [nameRoom, setNameRoom] = useState('');
     const [totalkWh, setTotalkWh] = useState(-1);
+
+    const getNameRoom = async () => {
+      // const apiUrl = urlLink.api.serverUrl + urlLink.api.getListDeviceEnergy;
+      const apiUrl = urlLink.api.serverUrl + urlLink.api.getNameRoomByIdDevice + idDevice;
+        try {
+          const response = await axios.get(apiUrl);
+
+          setNameRoom(response.data.data.roomName);
+      
+        } catch (error) {
+          console.error('Error fetching data:', error);
+        }
+    };
+    useEffect(() => {
+      getNameRoom();
+    }, [])
+
+
     const [loading, setLoading] = useState(false);
     const startLoading = () => {
       setLoading(true);
@@ -114,8 +111,8 @@ const FollowEnergyUser2 = props => {
     const [currentElectric, setCurrentElectric] = useState(70);
     //per 15 minutes
     const getCurrentElectric = async () => {
-        const apiUrl = urlLink.api.serverUrl + urlLink.api.getLatestDataDeviceEnergy + `${idMetter}`;
-        if (idMetter !== undefined) {
+        const apiUrl = urlLink.api.serverUrl + urlLink.api.getLatestDataDeviceEnergy + `${idDevice}`;
+        if (currentUser.idDevice) {
           try {
             const response = await axios.get(apiUrl);
   
@@ -145,7 +142,7 @@ const FollowEnergyUser2 = props => {
       startLoading();
 
       // if (value === 0) {
-      //   apiKwh = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerHour + idMetter;
+      //   apiKwh = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerHour + idDevice;
       //   // console.log("Đã chọn 00000")
       //   setLabelLineChart(labelsInDay);
       // } else if (value === 1) {
@@ -155,7 +152,7 @@ const FollowEnergyUser2 = props => {
       //   const currentMon = current.getMonth() + 1;
 
       //   // apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentMonDataPerDay/${id}/2024/01`;
-      //   apiKwh = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerDay + idMetter + '/' + currentYear + '/' + currentMon;
+      //   apiKwh = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerDay + idDevice + '/' + currentYear + '/' + currentMon;
       //   setLabelLineChart(labelsInMon);
       //   // console.log("Đã chọn 1111111111111", apiKwh);
       // } 
@@ -165,10 +162,10 @@ const FollowEnergyUser2 = props => {
         const currentMon = current.getMonth() + 1;
 
         const apiUrl = apiKwh;
-        const apiUrlDay = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerHour + idMetter;
-        const apiUrlMon = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerDay + idMetter + '/' + currentYear + '/' + currentMon;
+        const apiUrlDay = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerHour + idDevice;
+        const apiUrlMon = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerDay + idDevice + '/' + currentYear + '/' + currentMon;
 
-        if (idMetter !== undefined){
+        if (currentUser.idDevice){
           try {
             const responseDay = await axios.get(apiUrlDay);
             const responseMon = await axios.get(apiUrlMon);
@@ -219,7 +216,7 @@ const FollowEnergyUser2 = props => {
           <title>Energy</title>
           <meta name="description" content="Description of Energy" />
         </Helmet>
-        <div className="title-abc">Theo dõi năng lượng: {name}</div>
+        <div className="title-abc">Theo dõi năng lượng: {nameRoom}</div>
 
           {loading && <div className="loading-overlay"></div>}
 

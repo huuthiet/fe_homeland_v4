@@ -12,8 +12,10 @@ import {
 import { ADD_BANK_USER, POST_PAYMENT_USER } from './constants';
 
 export function* apiGetMasterBankNameUser(payload) {
-  const requestUrl = `${urlLink.api.serverUrl +
-    urlLink.api.postBankNameList}/user`;
+  // const requestUrl = `${urlLink.api.serverUrl +
+  //   urlLink.api.postBankNameList}/user`;
+
+  const requestUrl = urlLink.api.serverUrl + urlLink.api.getBankMasterList;
 
   yield put(loadRepos());
   try {

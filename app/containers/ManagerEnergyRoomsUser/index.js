@@ -21,6 +21,7 @@ import {
   ListItemAvatar,
   ListItemSecondaryAction,
   ListItemText,
+  colors,
 } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -148,6 +149,10 @@ export function ManagerEnergyRoomsUser(props) {
   } = props.profile;
   const [id, setId] = useState('');
 
+  // jobs.map(job => (
+  //   console.log("job.room.idElectricMetter", job.room.idElectricMetter)
+  // ))
+
 
 
   return (
@@ -161,23 +166,35 @@ export function ManagerEnergyRoomsUser(props) {
           <Grid item xs={12} key={job._id}>
             <PaperWrapper style={{ marginTop: 0 }}>
               <Grid container justify="center" alignItems="center">
-                <Grid item xs={6}>
+                <Grid item xs={5}>
                   <Typography style={{ fontWeight: 'bold' }}>
-                    {job.fullName}
+                    Người thuê: {job.fullName}
                   </Typography>
-                  <Typography>{job.phoneNumber}</Typography>
+                  <Typography>Số điện thoại: {job.phoneNumber}</Typography>
+                  <Typography>{job.room.name}</Typography>
+                  {(job.room.idElectricMetter === "0" || job.room.idElectricMetter === undefined) ? (
+                    <>
+                      <Typography style={{ color: 'red', fontWeight: 'bold'}}>Phòng chưa được đặt mã số đồng hồ điện.</Typography>
+                      <Typography style={{ color: 'red', fontWeight: 'bold'}}>Vui lòng liên hệ chủ nhà!</Typography>
+                    </>
+                  ) : (
+                    <Typography>Mã đồng hồ điện: {job.room.idElectricMetter}</Typography>
+                  )}
                 </Grid>
-                <Grid item xs={6}>
+                <Grid item xs={2}>
                   <Grid container>
                     <Grid item xs={6}>
-                      <IconButton
+                      <Button
+                        variant="contained"
                         color="primary"
+                        component="span"
                         onClick={() => {
-                          history.push(`/report-problem/${job._id}`);
+                          history.push(`/follow-energy/${job.room.idElectricMetter}/${job.room.name}`);
                         }}
+                        disabled={job.room.idElectricMetter === "0" || job.room.idElectricMetter === undefined}
                       >
-                        <DeleteIcon />
-                      </IconButton>
+                        Chi tiết
+                      </Button>
                     </Grid>
                   </Grid>
                 </Grid>

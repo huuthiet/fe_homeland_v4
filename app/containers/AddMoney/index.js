@@ -50,6 +50,24 @@ export function AddMoney(props) {
   const [amount, setAmount] = useState(1000);
 
   const { bankUser = [] } = props.addMoney;
+  console.log("bankUser", bankUser);
+
+  // const bankUser = [
+  //   { a: 'Người dùng 1', b: 'user1' },
+  //   { a: 'Người dùng 2', b: 'user2' },
+  // ];
+
+  let bankUserOptions = [];
+
+  bankUserOptions = bankUser.map((item) => ({
+    ...item,
+    key: item._id,
+    label: item.nameTkLable,
+    value: item.bank,
+  }));
+  
+
+  console.log("bankUserOptions", bankUserOptions);
   const [dataOptions, setDataOptions] = useState('Chọn Ngân Hàng');
 
   const [branch, setBranch] = useState('');
@@ -115,12 +133,12 @@ export function AddMoney(props) {
     setDataOptions(e.value);
     const bankValue = e.value;
     // eslint-disable-next-line no-plusplus
-    for (let k = 0; k < bankUser.length; k++) {
-      const item = bankUser[k];
+    for (let k = 0; k < bankUserOptions.length; k++) {
+      const item = bankUserOptions[k];
       if (item.value === bankValue) {
         setBranch(item.branch);
-        setLabel(item.label);
-        setValue(item.value);
+        setLabel(item.nameTkLable);
+        setValue(item.bank);
         setImages(item.images);
         setNameTk(item.nameTk);
         setStk(item.stk);
@@ -180,10 +198,10 @@ export function AddMoney(props) {
                       </Col>
                       <Col sm="9">
                         <Select
-                          key={bankUser}
+                          key={bankUserOptions}
                           placeholder={dataOptions}
                           value={dataOptions}
-                          options={bankUser}
+                          options={bankUserOptions}
                           className="mb-3"
                           onChange={e => {
                             handleChangeBank(e);

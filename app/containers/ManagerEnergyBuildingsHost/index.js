@@ -102,6 +102,7 @@ export function ManagerEnergyBuildingsHost(props) {
         <title>Profile</title>
         <meta name="description" content="Description of Profile" />
       </Helmet>
+      <div className="title-abc">Quản lý năng lượng các tòa nhà</div>
       <div className="user-profile">
         {role.length === 2 && role[0] === 'host' ? (
           <div className="list-motel">

@@ -53,6 +53,7 @@ import EnergyDetail from 'containers/EnergyDetail/Loadable';
 import ScadaElectricEMS from 'containers/ScadaElectricEMS/Loadable';
 import FollowEnergyAdmin from 'containers/FollowEnergyAdmin/Loadable';
 import FollowEnergyHost from 'containers/FollowEnergyHost/Loadable';
+import FollowEnergyUser2 from 'containers/FollowEnergyUser2/Loadable';
 import FollowEnergyUser from 'containers/FollowEnergyUser/Loadable';
 import Withdraw from 'containers/Withdraw/Loadable';
 import RequestWithdrawUserList from 'containers/RequestWithdrawUserList/Loadable';
@@ -251,7 +252,12 @@ export function App(props) {
           path="/host/follow-energy/:id/:name"
           component={FollowEnergyHost}
         />
-        <Route path="/follow-energy/" component={FollowEnergyUser} />
+        <Route path="/follow-energy-2/" component={FollowEnergyUser2} />
+
+        <Route
+          path="/follow-energy/:idMetter/:name"
+          component={FollowEnergyUser}
+        />
 
         <Route path="/withdraw" component={Withdraw} />
 
