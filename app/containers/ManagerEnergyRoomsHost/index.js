@@ -20,31 +20,30 @@ import {
   CardContent,
   CardMedia,
   Button,
-  Typography
+  Typography,
 } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { Link, NavLink, useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
-import { NavLink, useHistory } from 'react-router-dom';
+
 import { HomeRounded, AccessTime } from '@material-ui/icons';
 
 import axios, { AxiosResponse } from 'axios';
 
-import messages from './messages';
-import { urlLink } from '../../helper/route';
 import './style.scss';
 
 import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+import { urlLink } from '../../helper/route';
+import messages from './messages';
 
 import reducer from '../Motel/reducer';
 import saga from '../Motel/saga';
 import makeSelectMotel from '../Motel/selectors';
 
 import { getMotel } from '../Motel/actions';
-
 
 const ManagerEnergyRoomsHost = props => {
   const currentUser = localStore.get('user') || {};
@@ -64,8 +63,8 @@ const ManagerEnergyRoomsHost = props => {
 
   const { floors = [] } = motel;
 
-  console.log("id motel", motel);
-  console.log("id floors", floors);
+  console.log('id motel', motel);
+  console.log('id floors', floors);
 
   // const {
   //   totalRoom = '',
@@ -95,7 +94,7 @@ const ManagerEnergyRoomsHost = props => {
     borderRadius: '10px',
     top: '30px',
     padding: '20px 0px 10px 0px',
-  }
+  };
 
   const cardIcon = {
     color: '#7B7B7B',
@@ -111,7 +110,7 @@ const ManagerEnergyRoomsHost = props => {
     zIndex: '1',
     top: '25px',
     left: '25px',
-  }
+  };
 
   const StyledButton = styled.button`
     display: flex;
@@ -129,7 +128,7 @@ const ManagerEnergyRoomsHost = props => {
       color: white;
       transition: background-color 0.5s;
     }
-`;
+  `;
 
   const cardNameStyle = {
     alignItems: 'center',
@@ -137,7 +136,7 @@ const ManagerEnergyRoomsHost = props => {
     color: '#7B7B7B',
     fontSize: '20px',
     fontWeight: 'bold',
-  }
+  };
 
   const inlineStyles = {
     color: 'blue',
@@ -150,7 +149,6 @@ const ManagerEnergyRoomsHost = props => {
 
   return (
     <div className="container">
-
       {/* {!_.isEmpty(currentUser) ? ( */}
       <>
         <Helmet>
@@ -160,61 +158,99 @@ const ManagerEnergyRoomsHost = props => {
         <div className="title-abc">Quản lý năng lượng các phòng tòa {name}</div>
         {/* {currentUser.role.includes('host') && ( */}
         <Grid lg={12} container spacing={2}>
-          {floors.map((floor, floorIndex) => (
-            console.log("floor", floor),
-            floor.rooms.map((room, roomIndex) => (
-              <>
-
-                <Grid key={roomIndex} item lg={3} md={4} sm={6} xs={12}>
-                  <div div style={cardIcon} >
-                    <AccessTime style={{ color: 'white' }} />
-                  </div>
-                  <Card style={cardStyle}>
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div" style={cardNameStyle}>
-                        {room.name}
-                      </Typography>
-
-                      <Typography variant="body2" color="text.secondary">
-                        ID đồng hồ: &nbsp;
-                        <span
-                          style={{
-                            color: room.idElectricMetter === "0" || room.idElectricMetter === undefined ? 'red' : 'green',
-                            fontWeight: room.idElectricMetter === "0" || room.idElectricMetter === undefined ? 'bold' : 'bold',
-                            border: room.idElectricMetter === "0" || room.idElectricMetter === undefined ? '1px solid red' : '1px solid green',
-                            padding: room.idElectricMetter === "0" || room.idElectricMetter === undefined ? '5px' : '5px',
-                            borderRadius: room.idElectricMetter === "0" || room.idElectricMetter === undefined ? '5px' : '5px',
-                            backgroundColor: room.idElectricMetter === "0" || room.idElectricMetter === undefined ? 'rgba(255, 0, 0, 0.1)' : '#DAFFE9',
-                          }}
+          {floors.map(
+            (floor, floorIndex) => (
+              console.log('floor', floor),
+              floor.rooms.map((room, roomIndex) => (
+                <>
+                  <Grid key={roomIndex} item lg={3} md={4} sm={6} xs={12}>
+                    <div div style={cardIcon}>
+                      <AccessTime style={{ color: 'white' }} />
+                    </div>
+                    <Card style={cardStyle}>
+                      <CardContent>
+                        <Typography
+                          gutterBottom
+                          variant="h5"
+                          component="div"
+                          style={cardNameStyle}
                         >
-                          {(room.idElectricMetter === "0" || room.idElectricMetter === undefined) ? <span style={{ fontWeight: 'bold' }}>Chưa được đặt</span> : room.idElectricMetter}
-                        </span>
-                      </Typography>
-                    </CardContent>
-                    <CardActions style={{ justifyContent: 'center' }}>
-                      <Link to={`/host/follow-energy/${room.idElectricMetter}/${room.name}`} style={{ textDecoration: 'none' }}>
-                        <StyledButton>Xem chi tiết</StyledButton>
-                      </Link>
-                    </CardActions>
-                  </Card>
-                </Grid>
+                          {room.name}
+                        </Typography>
 
-
-
-
-              </>
-            ))
-          ))}
-        </Grid >
+                        <Typography variant="body2" color="text.secondary">
+                          ID đồng hồ: &nbsp;
+                          <span
+                            style={{
+                              color:
+                                room.idElectricMetter === '0' ||
+                                room.idElectricMetter === undefined
+                                  ? 'red'
+                                  : 'green',
+                              fontWeight:
+                                room.idElectricMetter === '0' ||
+                                room.idElectricMetter === undefined
+                                  ? 'bold'
+                                  : 'bold',
+                              border:
+                                room.idElectricMetter === '0' ||
+                                room.idElectricMetter === undefined
+                                  ? '1px solid red'
+                                  : '1px solid green',
+                              padding:
+                                room.idElectricMetter === '0' ||
+                                room.idElectricMetter === undefined
+                                  ? '5px'
+                                  : '5px',
+                              borderRadius:
+                                room.idElectricMetter === '0' ||
+                                room.idElectricMetter === undefined
+                                  ? '5px'
+                                  : '5px',
+                              backgroundColor:
+                                room.idElectricMetter === '0' ||
+                                room.idElectricMetter === undefined
+                                  ? 'rgba(255, 0, 0, 0.1)'
+                                  : '#DAFFE9',
+                            }}
+                          >
+                            {room.idElectricMetter === '0' ||
+                            room.idElectricMetter === undefined ? (
+                                <span style={{ fontWeight: 'bold' }}>
+                                Chưa được đặt
+                                </span>
+                              ) : (
+                                room.idElectricMetter
+                              )}
+                          </span>
+                        </Typography>
+                      </CardContent>
+                      <CardActions style={{ justifyContent: 'center' }}>
+                        <Link
+                          to={`/host/follow-energy/${room.idElectricMetter}/${
+                            room.name
+                          }`}
+                          style={{ textDecoration: 'none' }}
+                        >
+                          <StyledButton>Xem chi tiết</StyledButton>
+                        </Link>
+                      </CardActions>
+                    </Card>
+                  </Grid>
+                </>
+              ))
+            ),
+          )}
+        </Grid>
 
         {/* )} */}
       </>
       {/* ) : (
         <h1>Không có quyền truy cập</h1>
       )} */}
-    </div >
+    </div>
   );
-}
+};
 
 ManagerEnergyRoomsHost.propTypes = {
   dispatch: PropTypes.func,
@@ -239,10 +275,8 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-
 // export default ManagerEnergyRooms;
 export default compose(withConnect)(ManagerEnergyRoomsHost);
-
 
 // {floors.map((floor, floorIndex) => (
 //   <div key={floorIndex}>
@@ -277,7 +311,8 @@ export default compose(withConnect)(ManagerEnergyRoomsHost);
 //   </div>
 // ))}
 
-{/* <Grid item lg={3} md={4} sm={6} xs={12}>
+{
+  /* <Grid item lg={3} md={4} sm={6} xs={12}>
                   <Card sx={{ maxWidth: 345 }}>
                     <CardMedia
                       component="img"
@@ -299,4 +334,5 @@ export default compose(withConnect)(ManagerEnergyRoomsHost);
                       </Link>
                     </CardActions>
                   </Card>
-                </Grid> */}
+                </Grid> */
+}
