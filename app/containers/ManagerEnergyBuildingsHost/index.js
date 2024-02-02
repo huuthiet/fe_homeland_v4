@@ -123,7 +123,7 @@
 //                           }}
 //                         >
 //                           <div>
-//                             <i className="fa fa-cog" aria-hidden="true" />  
+//                             <i className="fa fa-cog" aria-hidden="true" />
 //                           </div>
 //                           <div>{<FormattedMessage {...messages.edit} />}</div>
 //                         </div>
@@ -166,7 +166,6 @@
 // );
 
 // export default compose(withConnect)(ManagerEnergyBuildingsHost);
-
 
 // import PropTypes from 'prop-types';
 // import React, { useEffect, useState } from 'react';
