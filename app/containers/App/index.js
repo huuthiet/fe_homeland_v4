@@ -64,6 +64,7 @@ import ManagerEnergyRoomsUser from 'containers/ManagerEnergyRoomsUser/Loadable';
 
 import ManagerEnergyHostAdmin from 'containers/ManagerEnergyHostAdmin/Loadable';
 import ManagerEnergyBuildingsAdmin from 'containers/ManagerEnergyBuildingsAdmin/Loadable';
+import ManagerEnergyRoomsAdmin from 'containers/ManagerEnergyRoomsAdmin/Loadable';
 
 //----------------------------
 import PropTypes from 'prop-types';
@@ -238,7 +239,7 @@ export function App(props) {
         <Route
           path="/admin/manager-energy-rooms"
           component={ManagerEnergyRooms}
-          />
+        />
 
         <Route path="/admin/manager-energy-buildings" component={ManagerEnergyBuildings} />
 
@@ -294,8 +295,13 @@ export function App(props) {
         />
 
         <Route
-          path="/admin/manager-energy-rooms-host/:id/:name"
+          path="/admin/manager-energy-buildings-host/:id/:name"
           component={ManagerEnergyBuildingsAdmin}
+        />
+
+        <Route
+          path="/admin/manager-energy-rooms-admin/:id/:name"
+          component={ManagerEnergyRoomsAdmin}
         />
 
         {/* <Route

@@ -420,9 +420,12 @@ const Navbar = props => {
                       <DropdownItem href="/admin/users">
                         <FormattedMessage {...messages.user} />
                       </DropdownItem>
-                      <DropdownItem href="/admin/manager-energy-rooms">
-                        <FormattedMessage {...messages.energyRooms} />
+                      <DropdownItem href="/admin/manager-energy-host">
+                        <FormattedMessage {...messages.mangerHost} />
                       </DropdownItem>
+                      {/* <DropdownItem href="/admin/manager-energy-rooms">
+                        <FormattedMessage {...messages.energyRooms} />
+                      </DropdownItem> */}
                       {/* <DropdownItem href="/admin/job/list">
                         <FormattedMessage {...messages.job} />
                       </DropdownItem> */}

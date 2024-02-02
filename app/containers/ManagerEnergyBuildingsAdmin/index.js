@@ -293,7 +293,7 @@ export function ManagerEnergyBuildingsAdmin(props) {
                           className="detail-button"
                           onClick={() => {
                             history.push(
-                              `/manager-energy-rooms-host/${motel._id}/${motel.name}`,
+                              `/admin/manager-energy-rooms-admin/${motel._id}/${motel.name}`,
                             );
                           }}
                         >
@@ -303,7 +303,7 @@ export function ManagerEnergyBuildingsAdmin(props) {
                     </div>
                   ))
                 ) : (
-                  <p>Không có phòng</p>
+                  <p className='text-center'>Không có phòng</p>
                 )
               ) : (
                 ''

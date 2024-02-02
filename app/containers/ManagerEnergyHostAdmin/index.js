@@ -116,7 +116,7 @@ export function ManagerEnergyHostAdmin(props) {
                         color="primary"
                         component="span"
                         onClick={() => {
-                            history.push(`/admin/manager-energy-rooms-host/${host._id}/${host.lastName + host.firstName}`);
+                            history.push(`/admin/manager-energy-buildings-host/${host._id}/${host.lastName + host.firstName}`);
                           }}
                         >
                           Chi tiết
