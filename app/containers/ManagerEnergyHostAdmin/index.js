@@ -19,6 +19,7 @@ import {
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
+import styled from 'styled-components';
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import AddIcon from '@material-ui/icons/Add';
 import ContactsIcon from '@material-ui/icons/Contacts';
@@ -35,6 +36,7 @@ import { useHistory } from 'react-router-dom';
 import { Col, Row } from 'reactstrap';
 import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
+import { LocalPhone } from '@material-ui/icons';
 import Money from '../../helper/format';
 import {
   getMotelList,
@@ -90,6 +92,23 @@ export function ManagerEnergyHostAdmin(props) {
 
   console.log("hosts", hosts);
 
+  const StyledButton = styled.button`
+    display: flex;
+    background-color: white;
+    border: 1px solid rgb(21, 93, 121);
+    color: rgb(21, 93, 121);
+    padding: 2px 20px;
+    transition: background-color 0.5s;
+    border-radius: 8px;
+    margin: 8px 0;
+
+    &:hover {
+      background-color: rgb(21, 93, 121);
+      color: white;
+      transition: background-color 0.5s;
+    }
+  `;
+
   return (
     <div className="user-profile-wrapper container">
       <Helmet>
@@ -105,26 +124,31 @@ export function ManagerEnergyHostAdmin(props) {
               {hosts.length > 0 &&
                 hosts.map((host) => (
                   <>
-                  <li key={host._id}>
-                    <Row className="motel">
-                      <Col xs={5} className="motel-name">
-                        {host.lastName} {host.firstName}
-                      </Col>
-                      <Col xs={4} className="motel-edit">
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        component="span"
-                        onClick={() => {
-                            history.push(`/admin/manager-energy-buildings-host/${host._id}/${host.lastName + host.firstName}`);
-                          }}
-                        >
-                          Chi tiết
-                      </Button>
-                      </Col>
-                    </Row>
-                  </li>
-                </>
+
+                    <li key={host._id}>
+                      <Row className="motel">
+                        <Col xs={4} className="motel-name">
+                          {host.lastName} {host.firstName}
+                        </Col>
+                        <Col xs={4} className="motel-phonenumber">
+                          <LocalPhone style={{ color: 'gray', height: '19px' }} />
+                          {host.phoneNumber.number}
+                        </Col>
+                        <Col xs={4} className="motel-edit">
+                          <StyledButton
+                            variant="contained"
+                            color="primary"
+                            component="span"
+                            onClick={() => {
+                              history.push(`/admin/manager-energy-buildings-host/${host._id}/${host.lastName + host.firstName}`);
+                            }}
+                          >
+                            Chi tiết
+                          </StyledButton>
+                        </Col>
+                      </Row>
+                    </li>
+                  </>
                 ))}
             </ul>
           </div>

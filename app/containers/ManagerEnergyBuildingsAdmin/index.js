@@ -190,7 +190,7 @@ import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
-import { HomeRounded } from '@material-ui/icons';
+import { HomeRounded, LocationOn } from '@material-ui/icons';
 
 import AccountBalanceWalletIcon from '@material-ui/icons/AccountBalanceWallet';
 import AddIcon from '@material-ui/icons/Add';
@@ -275,40 +275,48 @@ export function ManagerEnergyBuildingsAdmin(props) {
 
       {role.length === 2 && role[0] === 'master' ? (
         <>
-          <div className="container">
-            <div className="host-card">
-              {motelList !== undefined ? (
-                motelList.length > 0 ? (
-                  motelList.map((motel, key) => (
-                    <div key={key}>
-                      <div className="icon-card">
-                        <HomeRounded style={{ color: 'white' }} />
-                      </div>
-                      <Card variant="outlined" className="card-container">
-                        <div className="title">Thông tin tòa nhà</div>
-                        <p>
-                          <strong>Tên tòa nhà:</strong> {motel.name}
-                        </p>
-                        <div
-                          className="detail-button"
-                          onClick={() => {
-                            history.push(
-                              `/admin/manager-energy-rooms-admin/${motel._id}/${motel.name}`,
-                            );
-                          }}
-                        >
-                          <p className="detail-text">Xem chi tiết</p>
-                        </div>
-                      </Card>
+          <div className="card-wrap">
+            {motelList !== undefined ? (
+              motelList.length > 0 ? (
+                motelList.map((motel, key) => (
+                  <div className="motel-card">
+                    <div className="icon-card">
+                      <HomeRounded style={{ color: 'white' }} />
                     </div>
-                  ))
-                ) : (
-                  <p className='text-center'>Không có phòng</p>
-                )
+                    <Card variant="outlined" className="card-container">
+                      <div className="card-content">
+                        <div className="card-motel-name">
+                          <HomeRounded
+                            style={{
+                              color: 'gray',
+                              height: '22px',
+                              width: '22px',
+                            }}
+                          />
+                          <span className="motel-name">Tên tòa nhà: </span>
+                          {motel.name.toUpperCase()}
+                        </div>
+                      </div>
+                      <div
+                        className="detail-button"
+                        onClick={() => {
+                          history.push(
+                            `/admin/manager-energy-rooms-admin/${motel._id}/${motel.name
+                            }`,
+                          );
+                        }}
+                      >
+                        <p className="detail-text">Xem chi tiết</p>
+                      </div>
+                    </Card>
+                  </div>
+                ))
               ) : (
-                ''
-              )}
-            </div>
+                <p className='text-center'>Không có phòng</p>
+              )
+            ) : (
+              ''
+            )}
           </div>
         </>
       ) : (

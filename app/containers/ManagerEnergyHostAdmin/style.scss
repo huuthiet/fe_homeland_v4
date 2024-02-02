@@ -4,31 +4,44 @@
       list-style-type: none;
       padding-left: 0;
       li {
-        color: white;
+        color: rgb(60, 60, 60);
+        font-size: 20px;
+        font-weight: 700;
         .motel {
           border-radius: 10px;
           margin: 15px 0;
           padding: 5px;
-          text-align: center;
+          text-align: start;
+
           .motel-name {
             align-items: center;
             display: flex;
-            justify-content: center;
+            font-weight: 500;
+          }
+          .motel-phonenumber{
+            align-items: center;
+            display: flex;
+            font-weight: 400;
           }
           .motel-new,
           .motel-edit,
           .motel-remove {
             cursor: pointer;
+            display: flex;
+            justify-content: end;
+            align-items: center;
           }
         }
         &:nth-child(even) {
           .motel {
-            background: #457bc5;
+            background: #ffffff;
+            border: 1px solid rgb(188, 188, 188);
           }
         }
         &:nth-child(odd) {
           .motel {
-            background: #bcdfc1;
+            background: #ffffff;
+            border: 1px solid rgb(188, 188, 188);
           }
         }
       }

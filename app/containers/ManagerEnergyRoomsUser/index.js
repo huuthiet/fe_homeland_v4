@@ -59,6 +59,8 @@ import './style.scss';
 import { urlLink } from '../../helper/route';
 import axios from 'axios';
 import localStoreService from 'local-storage';
+import { useTheme } from '@material-ui/core/styles';
+import useMediaQuery from '@material-ui/core/useMediaQuery';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -113,7 +115,7 @@ export function ManagerEnergyRoomsUser(props) {
           formData,
         };
         apiPostImg(data);
-      } catch (error) {}
+      } catch (error) { }
     }
   };
   const apiPostImg = async payload => {
@@ -154,6 +156,9 @@ export function ManagerEnergyRoomsUser(props) {
   // ))
 
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
 
   return (
     <div className="user-profile-wrapper container">
@@ -162,28 +167,30 @@ export function ManagerEnergyRoomsUser(props) {
         <meta name="description" content="Description of Profile" />
       </Helmet>
       <Grid container align="center">
-        {jobs.map(job => (
+        {jobs.map((job) => (
           <Grid item xs={12} key={job._id}>
             <PaperWrapper style={{ marginTop: 0 }}>
-              <Grid container justify="center" alignItems="center">
-                <Grid item xs={5}>
+              <Grid container
+                direction={isMobile ? 'column' : 'row'}
+                justify="center" alignItems="center">
+                <Grid item xs={isMobile ? 12 : 5}>
                   <Typography style={{ fontWeight: 'bold' }}>
                     Người thuê: {job.fullName}
                   </Typography>
                   <Typography>Số điện thoại: {job.phoneNumber}</Typography>
                   <Typography>{job.room.name}</Typography>
-                  {(job.room.idElectricMetter === "0" || job.room.idElectricMetter === undefined) ? (
+                  {job.room.idElectricMetter === "0" || job.room.idElectricMetter === undefined ? (
                     <>
-                      <Typography style={{ color: 'red', fontWeight: 'bold'}}>Phòng chưa được đặt mã số đồng hồ điện.</Typography>
-                      <Typography style={{ color: 'red', fontWeight: 'bold'}}>Vui lòng liên hệ chủ nhà!</Typography>
+                      <Typography style={{ color: 'red', fontWeight: 'bold' }}>Phòng chưa được đặt mã số đồng hồ điện.</Typography>
+                      <Typography style={{ color: 'red', fontWeight: 'bold' }}>Vui lòng liên hệ chủ nhà!</Typography>
                     </>
                   ) : (
                     <Typography>Mã đồng hồ điện: {job.room.idElectricMetter}</Typography>
                   )}
                 </Grid>
-                <Grid item xs={2}>
+                <Grid item xs={isMobile ? 12 : 2}>
                   <Grid container>
-                    <Grid item xs={6}>
+                    <Grid item xs={12}>
                       <Button
                         variant="contained"
                         color="primary"
@@ -204,6 +211,7 @@ export function ManagerEnergyRoomsUser(props) {
         ))}
       </Grid>
     </div>
+
   );
 }
 

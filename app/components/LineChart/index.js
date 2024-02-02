@@ -8,7 +8,7 @@ import {
     Title,
     Tooltip,
     Legend,
-  } from 'chart.js';
+} from 'chart.js';
 
 import { Line } from 'react-chartjs-2';
 
@@ -22,7 +22,7 @@ ChartJS.register(
     Legend
 );
 
-const LineChart = ({textY, nameChart, dataEnergy, labelsEnergy}) => {
+const LineChart = ({ textY, nameChart, dataEnergy, labelsEnergy }) => {
 
 
     const labels = labelsEnergy;
@@ -39,16 +39,16 @@ const LineChart = ({textY, nameChart, dataEnergy, labelsEnergy}) => {
 
 
     const data = {
-    labels: labels,
-    // labels: timeArray,
-    datasets: [{
-        label: nameChart,
-        // data: [65, 59, 80 - null, null, null, 55, 40],
-        data: dataLine, 
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1,
-    }]
+        labels: labels,
+        // labels: timeArray,
+        datasets: [{
+            label: nameChart,
+            // data: [65, 59, 80 - null, null, null, 55, 40],
+            data: dataLine,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.01,
+        }]
     };
     const config = {
         type: 'line',
@@ -64,8 +64,8 @@ const LineChart = ({textY, nameChart, dataEnergy, labelsEnergy}) => {
                 y: {
                     beginAtZero: true,
                     title: {
-                      display: true,
-                      text: textY // Tiêu đề cho trục y
+                        display: true,
+                        text: textY // Tiêu đề cho trục y
                     },
                     // ticks: {
                     //   // Đơn vị cho trục y
@@ -84,8 +84,8 @@ const LineChart = ({textY, nameChart, dataEnergy, labelsEnergy}) => {
         },
     };
 
-    return(
-        <Line {...config}/>
+    return (
+        <Line {...config} />
     )
 }
 
