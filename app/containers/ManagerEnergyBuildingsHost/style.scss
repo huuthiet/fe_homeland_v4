@@ -45,81 +45,81 @@
 // }
 
 
-.user-profile-wrapper {
-  width: 100%;
-  .title-abc {
-    color: rgb(0, 183, 255);
-    font-size: 18px;
-    text-align: center;
-    padding: 10px;
-    font-weight: 500;
-  }
+// .user-profile-wrapper {
+//   width: 100%;
+//   .title-abc {
+//     color: rgb(0, 183, 255);
+//     font-size: 18px;
+//     text-align: center;
+//     padding: 10px;
+//     font-weight: 500;
+//   }
 
-  .container{
-    width: 100%;
-    .host-card{
-      display: flex;
-      width: 100%;
-      flex-direction: row;
-      .icon-card{
-        display: flex;
-        //wrap
-        flex-wrap: wrap;
-        justify-content: center;
-        align-items: center;
-        background: #fb8137;
-        width: 44px;
-        min-width: 44px;
-        height: 44px;
-        min-height: 44px;
-        position: relative;
-        border: none;
-        border-radius: 50%;
-        z-index: 999;
-        top: 60px;
-        left: 70px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 0 10px 0 rgba(251,129,55, .5);
-      }
-      .card-container {
-        background: #f7f7f7;
-        min-width: 180px;
-        width: 25%;
-        border: none;
-        padding: 20px 30px;
-        border-radius: 10px;
-        position: relative;
-        top: 40px;
-        left: 0;
-        &:hover {
-          cursor: pointer;
-        }
+//   .container{
+//     width: 100%;
+//     .host-card{
+//       display: flex;
+//       width: 100%;
+//       flex-direction: row;
+//       .icon-card{
+//         display: flex;
+//         //wrap
+//         flex-wrap: wrap;
+//         justify-content: center;
+//         align-items: center;
+//         background: #fb8137;
+//         width: 44px;
+//         min-width: 44px;
+//         height: 44px;
+//         min-height: 44px;
+//         position: relative;
+//         border: none;
+//         border-radius: 50%;
+//         z-index: 999;
+//         top: 60px;
+//         left: 70px;
+//         backdrop-filter: blur(10px);
+//         box-shadow: 0 0 10px 0 rgba(251,129,55, .5);
+//       }
+//       .card-container {
+//         background: #f7f7f7;
+//         min-width: 180px;
+//         width: 25%;
+//         border: none;
+//         padding: 20px 30px;
+//         border-radius: 10px;
+//         position: relative;
+//         top: 40px;
+//         left: 0;
+//         &:hover {
+//           cursor: pointer;
+//         }
       
-        .title {
-          font-size: 20px;
-          font-weight: 700;
-          text-align: center;
-        }
-        .detail-button{
-          .detail-text{
-            background: #eaeaea;
-            width: fit-content;
-            padding: 2px 10px;
-            font-size: 16px;
-            border-radius: 10px;
-            color: #878787;
-            transition: transform 0.3s ease-in-out;
-            &:hover{
-              background-color: #eaeaea;
-              color: #646464;
-              transform: scale(1.1);
-            }
-          }
-        }
-      }
+//         .title {
+//           font-size: 20px;
+//           font-weight: 700;
+//           text-align: center;
+//         }
+//         .detail-button{
+//           .detail-text{
+//             background: #eaeaea;
+//             width: fit-content;
+//             padding: 2px 10px;
+//             font-size: 16px;
+//             border-radius: 10px;
+//             color: #878787;
+//             transition: transform 0.3s ease-in-out;
+//             &:hover{
+//               background-color: #eaeaea;
+//               color: #646464;
+//               transform: scale(1.1);
+//             }
+//           }
+//         }
+//       }
       
-    }
-  }
+//     }
+//   }
 
   // .user-profile{
   //   background: gray;
@@ -160,4 +160,111 @@
   //   }
   // }
 
-}
+// }
+
+.user-profile-wrapper {
+  width: 100%;
+
+  .title-abc {
+    color: rgb(21, 93, 121);
+    font-size: 22px;
+    text-align: center;
+    padding: 10px;
+    font-weight: 700;
+  }
+
+  .card-wrap {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    flex-wrap: wrap;
+      .motel-card {
+        width: 25%;
+        display: flex;
+        flex-wrap: wrap; 
+        min-width: 330px;
+        @media (max-width: 767px) {
+          width: 100%;
+          left: 0;
+        }
+        .icon-card {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: #fb8137;
+          width: 56px;
+          min-width: 56px;
+          height: 56px;
+          min-height: 56px;
+          position: relative;
+          border: none;
+          border-radius: 50%;
+          z-index: 999;
+          top: 50px;
+          left: 30px;
+          backdrop-filter: blur(10px);
+          box-shadow: 0 0 10px 0 rgba(251, 129, 55, .5);
+        }
+
+        .card-container {
+          display: flex;
+          flex-direction: column;
+          background: #f7f7f7;
+          border: none;
+          padding: 40px 30px 10px 30px;
+          border-radius: 20px;
+          position: relative;
+          top: 25px;
+          left: 0;
+          justify-content: space-around;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+
+          
+
+          .card-motel-name {
+            display: flex;
+            align-items: center;
+          }
+
+          .motel-name {
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #6d6d6d;
+          }
+
+          .title {
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+          }
+
+          .detail-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+
+            .detail-text {
+              background: #eaeaea;
+              width: fit-content;
+              padding: 4px 10px;
+              font-size: 16px;
+              border-radius: 10px;
+              color: #878787;
+              transition: transform 0.3s ease-in-out;
+
+              &:hover {
+                background-color: #eaeaea;
+                color: #454545;
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
