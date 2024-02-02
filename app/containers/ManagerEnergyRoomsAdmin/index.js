@@ -229,7 +229,7 @@ const ManagerEnergyRoomsAdmin = props => {
                       </CardContent>
                       <CardActions style={{ justifyContent: 'center' }}>
                         <Link
-                          to={`/host/follow-energy/${room.idElectricMetter}/${room.name
+                          to={`/admin/follow-energy/${room.idElectricMetter}/${room.name
                             }`}
                           style={{ textDecoration: 'none' }}
                         >

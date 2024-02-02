@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Grid, Tabs, Tab, Box } from '@material-ui/core';
 import { Helmet } from 'react-helmet';
+
+import Alert from '@material-ui/lab/Alert';
+import Button from '@material-ui/core/Button';
+import dayjs, { Dayjs } from 'dayjs';
+
 import axios, { AxiosResponse } from 'axios';
 import { useParams } from 'react-router-dom';
 import LineChart from '../../components/LineChart';
@@ -38,6 +43,71 @@ const FollowEnergyHost = () => {
   //get Device Id
   const { id, name } = useParams();
 
+  //note
+  const [showAlert, setShowAlert] = useState(false);
+  const [titleKwhChart, setTitleKwhChart] = useState('');
+
+  const currentDate = new Date();
+  const [startDate, setStartDate] = useState(dayjs().startOf('month').format('YYYY-MM-DD'));
+  const [endDate, setEndDate] 
+    = useState(dayjs(`${currentDate.getFullYear()}-${String(currentDate.getMonth() + 1).padStart(2, '0')}-${String(currentDate.getDate()).padStart(2, '0')}`)
+    .format('YYYY-MM-DD'));
+  // ngày bắt đầu và kế thúc để hiển thị, chưa lọc
+  const [startDateDisplay, setStartDateDisplay] =  useState(startDate);
+  const [endDateDisplay, setEndDateDisplay] =  useState(endDate);
+
+  const handleStartDateDisplayChange = (event) => {
+    const newDate = event.target.value;
+
+    setStartDateDisplay(newDate);
+  };
+  const handleEndDateDisplayChange = (event) => {
+    const newDate = event.target.value;
+
+    setEndDateDisplay(newDate);
+  };
+
+  const handleButtonFilter = async () => {
+    if (endDateDisplay < startDateDisplay) {
+      setShowAlert(true);
+      // console.log("kết quả so sánh", endDateDisplay < startDateDisplay);
+    } else {
+      // console.log("kết quả so sánh", endDateDisplay < startDateDisplay);
+      setShowAlert(false);
+
+       let apiGetDay = urlLink.api.serverUrl + urlLink.api.getDataEnergyPerDayByTime + id + '/' +  startDateDisplay  + '/' + endDateDisplay;
+
+      //  console.log("apiGetDay", apiGetDay);
+
+      try {
+        startLoading();
+        const response = await axios.get(apiGetDay);
+
+        // <LineChart textY='(kWh)' nameChart={`Total kWh: ${totalkWh}`} 
+        // dataEnergy={currentKwh} labelsEnergy={labelLineChart}/>
+
+        const result = response.data.data;
+
+        // parseFloat(responseMon.data.data.totalkWhMon).toFixed(2);
+
+        setTotalkWh(parseFloat(result.totalkWhTime).toFixed(2));
+        setCurrentKwh(result.kWhData);
+        setLabelLineChart(result.labelTime);
+
+        setTitleKwhChart(`Total kWh from ${startDateDisplay} to ${endDateDisplay}`)
+  
+        console.log("response.data.data", response.data.data);
+      } catch (error) {
+        console.error('Error fetching data from API:', error);
+      }  finally {
+        stopLoading();
+      }
+    }
+  }
+
+
+  //--------------------------
+
 
   const [labelLineChart, setLabelLineChart] = useState(labelsInDay);
 
@@ -48,27 +118,7 @@ const FollowEnergyHost = () => {
   const [value, setValue] = useState(0);
   const handleChangeTime = (event, newValue) => {
     setValue(newValue);
-
-    // if (newValue === 0) {
-    //   apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentDayDataPerHour/${id}`;
-    //   console.log("Đã chọn 00000")
-    //   setLabelLineChart(labelsInDay);
-    // } else if (newValue === 1) {
-    //   apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentMonDataPerDay/${id}`;
-    //   setLabelLineChart(labelsInMon);
-    //   console.log("Đã chọn 1111111111111", apiKwh);
-    // } 
   }
-
-
-
-  // if (value === 0) {
-  //   apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentDayDataPerHour/${id}`;
-  //   setLabelLineChart(labelsInDay);
-  // } else if (value === 1) {
-  //   apiKwh = `http://localhost:5502/api/v1/homeKey/energy/device/currentMonDataPerDay/${id}`;
-  //   setLabelLineChart(labelsInMon);
-  // } 
 
 
   const [loading, setLoading] = useState(false);
@@ -102,7 +152,7 @@ const FollowEnergyHost = () => {
 
     const intervalId = setInterval(() => {
       getCurrentElectric();
-    }, 1000 * 60 * 60);
+    }, 1000 *60*60);
 
     return () => clearInterval(intervalId);
   }, []);
@@ -110,6 +160,7 @@ const FollowEnergyHost = () => {
   const [currentDayData, setCurrentDayData] = useState([]);
   const [currentKwh, setCurrentKwh] = useState([]);
   const getCurrentDayData = async () => {
+    console.log("value", value);
 
     // console.log("Gọi lại ", apiKwh);
 
@@ -131,10 +182,20 @@ const FollowEnergyHost = () => {
         setCurrentKwh(responseDay.data.data.kWhData);
         const formattedTotalkWh = parseFloat(responseDay.data.data.totalkWhDay).toFixed(2);
         setTotalkWh(formattedTotalkWh);
+
+        setLabelLineChart(labelsInDay);
+
+        setTitleKwhChart(`Total kWh today`);
+
       } else if (value === 1) {
         const formattedTotalkWh = parseFloat(responseMon.data.data.totalkWhMon).toFixed(2);
         setTotalkWh(formattedTotalkWh);
         setCurrentKwh(responseMon.data.data.kWhData);
+
+        setLabelLineChart(labelsInMon);
+
+        setTitleKwhChart(`Total kWh this month`);
+
       }
       setCurrentDayData(responseDay.data.data);
 
@@ -147,16 +208,16 @@ const FollowEnergyHost = () => {
 
 
   useEffect(() => {
-    if (value === 0) {
-      setLabelLineChart(labelsInDay);
-    } else if (value === 1) {
-      setLabelLineChart(labelsInMon);
-    }
+    // if (value === 0) {
+    //   setLabelLineChart(labelsInDay);
+    // } else if (value === 1) {
+    //   setLabelLineChart(labelsInMon);
+    // }
     getCurrentDayData();
 
     const intervalId = setInterval(() => {
       getCurrentDayData();
-    }, 1000 * 60 * 60);
+    }, 1000 * 60*60);
 
     return () => clearInterval(intervalId);
   }, [value]);
@@ -219,12 +280,41 @@ const FollowEnergyHost = () => {
       <Helmet>
         <title>Energy Host</title>
         <meta name="description" content="Description of Energy" />
-      </Helmet>
-      <div className="title-abc">Theo dõi năng lượng: {name}</div>
+        </Helmet>
+        <div className="title-abc">Theo dõi năng lượng: {name}</div>
+
+        {showAlert && (
+                <Alert severity="error">
+                  Vui lòng nhập ngày sau lớn hơn ngày trước!
+                </Alert>
+              )}
+          <br/>
 
 
       {loading && <div className="loading-overlay"></div>}
-      {/* display: 'flex', justifyContent: 'center'  */}
+
+      <div style={{ textAlign: 'center' }}>
+              <label htmlFor="startdate">Từ ngày: </label>
+              <input
+                type='date'
+                id='startdate'
+                value={startDateDisplay}
+                onChange={handleStartDateDisplayChange}
+                style={{ marginRight: '8px' }} 
+              />
+              <label htmlFor="enddate">Đến ngày: </label>
+              <input
+                type='date'
+                id='enddate'
+                value={endDateDisplay}
+                onChange={handleEndDateDisplayChange}
+                style={{ marginRight: '8px' }}  
+              />
+              <Button onClick={handleButtonFilter} variant="contained" color="primary">
+                Lọc
+              </Button>
+            </div>
+
       <div style={{ marginLeft: '100px' }}>
         <Tabs
           value={value}
@@ -241,7 +331,7 @@ const FollowEnergyHost = () => {
       <div>
         <Grid container justify="center">
           <Grid style={followTotalKwhCard} item xs={12} sm={7} md={5}>
-            <LineChart textY='(kWh)' nameChart={`Total kWh: ${totalkWh}`} dataEnergy={currentKwh} labelsEnergy={labelLineChart} />
+            <LineChart textY='(kWh)' nameChart={`${titleKwhChart}: ${totalkWh}`} dataEnergy={currentKwh} labelsEnergy={labelLineChart} />
           </Grid>
 
           <Grid item xs={12} sm={4} md={3}

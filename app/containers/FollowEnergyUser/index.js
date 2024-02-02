@@ -38,7 +38,7 @@ function getDaysInCurrentMonth() {
 const labelsInMon = getDaysInCurrentMonth();
 
 
-const FollowEnergyUser2 = props => {
+const FollowEnergyUser = props => {
   // const { currentUser = {} } = props;
   const currentUser = localStore.get('user') || {};
   const { idDevice = '' } = currentUser;
@@ -88,6 +88,7 @@ const FollowEnergyUser2 = props => {
          //  console.log("apiGetDay", apiGetDay);
  
          try {
+          startLoading();
            const response = await axios.get(apiGetDay);
  
            // <LineChart textY='(kWh)' nameChart={`Total kWh: ${totalkWh}`} 
@@ -106,7 +107,9 @@ const FollowEnergyUser2 = props => {
            console.log("response.data.data", response.data.data);
          } catch (error) {
            console.error('Error fetching data from API:', error);
-         }
+         }  finally {
+          stopLoading();
+        }
        }
      }
  
@@ -167,6 +170,8 @@ const FollowEnergyUser2 = props => {
     const [currentKwh, setCurrentKwh ] = useState([]);
 
     const getCurrentDayData = async () => {
+
+      console.log("value", value);
       startLoading();
 
         const current = new Date();
@@ -320,7 +325,7 @@ const FollowEnergyUser2 = props => {
     );
 }
 
-FollowEnergyUser2.propTypes = {
+FollowEnergyUser.propTypes = {
   currentUser: PropTypes.object,
 };
-export default FollowEnergyUser2;
+export default FollowEnergyUser;

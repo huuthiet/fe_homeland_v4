@@ -70,6 +70,7 @@ export const urlLink = {
     getDataEnergyPerHour: '/v1/homeKey/energy/device/currentDayDataPerHour/',
     getDataEnergyPerDay: '/v1/homeKey/energy/device/currentMonDataPerDay/',
     getNameRoomByIdDevice: '/v1/homeKey/energy/device/getNameRoomById/',
+    getDataEnergyPerDayByTime: '/v1/homeKey/energy/device/getDataPerDayTimeToTime/', /*+ id/:startTime/:endTime */
     getBankUser: '/v1/user/bank',
     postRequestWithdraw: '/v1/user/requestWithdraws/',
     getRequestWithdrawUserList: '/v1/user/requestWithdraws/list',
