@@ -218,6 +218,7 @@ import './style.scss';
 import { urlLink } from '../../helper/route';
 import axios from 'axios';
 import localStoreService from 'local-storage';
+import { useParams } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -236,10 +237,15 @@ const useStyles = makeStyles(theme => ({
     display: 'none',
   },
 }));
-export function ManagerEnergyBuildingsHost(props) {
+export function ManagerEnergyBuildingsAdmin(props) {
   const classes = useStyles();
   useInjectReducer({ key: 'profile', reducer });
   useInjectSaga({ key: 'motelprofileList', saga });
+
+  const { id, name } = useParams();
+
+  console.log("id", id);
+  console.log("name", name);
 
   const currentUser = localStore.get('user') || {};
   const {
@@ -252,10 +258,10 @@ export function ManagerEnergyBuildingsHost(props) {
   const history = useHistory();
 
   useEffect(() => {
-    props.getMotelList();
+    props.getMotelList(id);
   }, []);
   const { motelList } = props.profile;
-  const [id, setId] = useState('');
+  // const [id, setId] = useState('');
 
   console.log('motelList', motelList);
 
@@ -265,16 +271,16 @@ export function ManagerEnergyBuildingsHost(props) {
         <title>Profile</title>
         <meta name="description" content="Description of Profile" />
       </Helmet>
-      <div className="title-abc">Quản lý năng lượng các tòa nhà</div>
+      <div className="title-abc">Quản lý năng lượng các tòa nhà: <strong>{name}</strong></div>
 
-      {role.length === 2 && role[0] === 'host' ? (
+      {role.length === 2 && role[0] === 'master' ? (
         <>
           <div className="container">
             <div className="host-card">
-              {motelList.length > 0 &&
-                motelList.map((motel, key) => (
-                  <>
-                    <div>
+              {motelList !== undefined ? (
+                motelList.length > 0 ? (
+                  motelList.map((motel, key) => (
+                    <div key={key}>
                       <div className="icon-card">
                         <HomeRounded style={{ color: 'white' }} />
                       </div>
@@ -287,9 +293,7 @@ export function ManagerEnergyBuildingsHost(props) {
                           className="detail-button"
                           onClick={() => {
                             history.push(
-                              `/manager-energy-rooms-host/${motel._id}/${
-                                motel.name
-                              }`,
+                              `/manager-energy-rooms-host/${motel._id}/${motel.name}`,
                             );
                           }}
                         >
@@ -297,8 +301,13 @@ export function ManagerEnergyBuildingsHost(props) {
                         </div>
                       </Card>
                     </div>
-                  </>
-                ))}
+                  ))
+                ) : (
+                  <p>Không có phòng</p>
+                )
+              ) : (
+                ''
+              )}
             </div>
           </div>
         </>
@@ -309,7 +318,7 @@ export function ManagerEnergyBuildingsHost(props) {
   );
 }
 
-ManagerEnergyBuildingsHost.propTypes = {
+ManagerEnergyBuildingsAdmin.propTypes = {
   dispatch: PropTypes.func,
   getRoomList: PropTypes.func,
   changeStoreData: PropTypes.func,
@@ -321,8 +330,8 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   return {
-    getMotelList: () => {
-      dispatch(getMotelList());
+    getMotelList: id => {
+      dispatch(getMotelList(id));
     },
   };
 }
@@ -332,4 +341,33 @@ const withConnect = connect(
   mapDispatchToProps,
 );
 
-export default compose(withConnect)(ManagerEnergyBuildingsHost);
+export default compose(withConnect)(ManagerEnergyBuildingsAdmin);
+
+// {motelList.length > 0 &&
+//   motelList.map((motel, key) => (
+//     <>
+//       <div>
+//         <div className="icon-card">
+//           <HomeRounded style={{ color: 'white' }} />
+//         </div>
+//         <Card variant="outlined" className="card-container">
+//           <div className="title">Thông tin tòa nhà</div>
+//           <p>
+//             <strong>Tên tòa nhà:</strong> {motel.name}
+//           </p>
+//           <div
+//             className="detail-button"
+//             onClick={() => {
+//               history.push(
+//                 `/manager-energy-rooms-host/${motel._id}/${
+//                   motel.name
+//                 }`,
+//               );
+//             }}
+//           >
+//             <p className="detail-text">Xem chi tiết</p>
+//           </div>
+//         </Card>
+//       </div>
+//     </>
+//   ))}

@@ -78,6 +78,8 @@ export const urlLink = {
     postBankUser: '/v1/user/bank/', /* + id*/ 
     getBankNameList: '/v1/user/bankname',
     getBankMasterList: '/v1/user/bankmastername',
+    adminHost: '/v1/admin/host',
+    getListMotelByHost: '/v1/admin/listMotel/host/',
     // -------
   },
   auth: {

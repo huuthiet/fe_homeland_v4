@@ -62,6 +62,9 @@ import ManagerEnergyBuildingsHost from 'containers/ManagerEnergyBuildingsHost/Lo
 import ManagerEnergyRoomsHost from 'containers/ManagerEnergyRoomsHost/Loadable';
 import ManagerEnergyRoomsUser from 'containers/ManagerEnergyRoomsUser/Loadable';
 
+import ManagerEnergyHostAdmin from 'containers/ManagerEnergyHostAdmin/Loadable';
+import ManagerEnergyBuildingsAdmin from 'containers/ManagerEnergyBuildingsAdmin/Loadable';
+
 //----------------------------
 import PropTypes from 'prop-types';
 import React, { useEffect } from 'react';
@@ -283,6 +286,16 @@ export function App(props) {
         <Route
           path="/manager-energy-rooms-user"
           component={ManagerEnergyRoomsUser}
+        />
+
+        <Route
+          path="/admin/manager-energy-host"
+          component={ManagerEnergyHostAdmin}
+        />
+
+        <Route
+          path="/admin/manager-energy-rooms-host/:id/:name"
+          component={ManagerEnergyBuildingsAdmin}
         />
 
         {/* <Route
