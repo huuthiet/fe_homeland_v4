@@ -484,47 +484,6 @@ export function ManagerEnergyBuildingsHost(props) {
                       </div>
                     </Card>
                   </div>
-                  <div className="motel-card">
-                    <div className="icon-card">
-                      <HomeRounded style={{ color: 'white' }} />
-                    </div>
-                    <Card variant="outlined" className="card-container">
-                      <div className="card-content">
-                        <div className="card-motel-name">
-                          <HomeRounded
-                            style={{
-                              color: 'gray',
-                              height: '22px',
-                              width: '22px',
-                            }}
-                          />
-                          <span className="motel-name">Tên tòa nhà: </span>
-                          {motel.name.toUpperCase()}
-                        </div>
-
-                        <br />
-                        <LocationOn
-                          style={{
-                            color: 'gray',
-                            height: '22px',
-                            width: '22px',
-                          }}
-                        />
-                        {motel.address.address}
-                      </div>
-                      <div
-                        className="detail-button"
-                        onClick={() => {
-                          history.push(
-                            `/manager-energy-rooms-host/${motel._id}/${motel.name
-                            }`,
-                          );
-                        }}
-                      >
-                        <p className="detail-text">Xem chi tiết</p>
-                      </div>
-                    </Card>
-                  </div>
                 </>
               ))}
           </div>

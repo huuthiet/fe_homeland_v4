@@ -49,6 +49,8 @@ import { getMotel } from '../Motel/actions';
 const ManagerEnergyRoomsAdmin = props => {
   const currentUser = localStore.get('user') || {};
 
+  
+
   const { id, name } = useParams();
 
   useInjectReducer({ key: 'motel', reducer });
@@ -158,7 +160,7 @@ const ManagerEnergyRoomsAdmin = props => {
           <meta name="description" content="Description of Energy" />
         </Helmet>
         <div className="title-abc">Quản lý năng lượng các phòng tòa {name}</div>
-        {/* {currentUser.role.includes('host') && ( */}
+        {currentUser.role.length === 2 && currentUser.role[0] === 'master' ? (
         <Grid lg={12} container spacing={2}>
           {floors.map(
             (floor, floorIndex) => (
@@ -243,8 +245,9 @@ const ManagerEnergyRoomsAdmin = props => {
             ),
           )}
         </Grid>
-
-        {/* )} */}
+        ) : (
+          ''
+        )}
       </>
       {/* ) : (
         <h1>Không có quyền truy cập</h1>

@@ -156,7 +156,7 @@ const ManagerEnergyRoomsHost = props => {
           <meta name="description" content="Description of Energy" />
         </Helmet>
         <div className="title-abc">Quản lý năng lượng các phòng tòa {name}</div>
-        {/* {currentUser.role.includes('host') && ( */}
+        {currentUser.role.length === 2 && currentUser.role[0] === 'master' ? (
         <Grid lg={12} container spacing={2}>
           {floors.map(
             (floor, floorIndex) => (
@@ -242,8 +242,9 @@ const ManagerEnergyRoomsHost = props => {
             ),
           )}
         </Grid>
-
-        {/* )} */}
+        ) : (
+          ''
+        )}
       </>
       {/* ) : (
         <h1>Không có quyền truy cập</h1>

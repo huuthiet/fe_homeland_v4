@@ -457,13 +457,13 @@ const Navbar = props => {
 
                   {currentUser.role.length === 1 && (
                     <>
-                      <DropdownItem
+                      {/* <DropdownItem
                         onClick={() => {
                           history.push('/follow-energy-2');
                         }}
                       >
                         <FormattedMessage {...messages.energyUser} />
-                      </DropdownItem>
+                      </DropdownItem> */}
                       <DropdownItem
                         onClick={() => {
                           history.push('/manager-energy-rooms-user');
